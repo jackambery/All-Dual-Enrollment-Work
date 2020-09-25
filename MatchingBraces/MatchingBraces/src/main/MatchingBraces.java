@@ -54,8 +54,8 @@ public class MatchingBraces {
 	
 	/**
 	 * This is the test class.
-	 * 
 	 * @param args
+	 * 
 	 */
 	public static void main(String args[]) {
 		
