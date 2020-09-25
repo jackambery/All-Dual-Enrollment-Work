@@ -1,0 +1,2 @@
+INDEX VERSION 1.131+C:\Users\bdlewis\OneDrive - bishopireton.org\DE Computer Science II\Workspace\All-Dual-Enrollment-Work\MatchingBraces\MatchingBraces\.metadata\.plugins\org.eclipse.jdt.core
+2707225126.index
