@@ -73,14 +73,11 @@ public class Chessboard extends JPanel {
 	
 	public void addPieces() {
 		setLayout(new GridLayout(8, 8));
-    	DragListener drag = new DragListener();
 		
 		for (int i = 0; i < 8; i++) {
 	        for (int j = 0; j < 8; j++) {
 	            pieces[i][j] = new JButton("");
 	        	squares[i][j].add(pieces[i][j]);
-	        	pieces[i][j].addMouseListener(drag);
-	        	pieces[i][j].addMouseMotionListener(drag);
 	            	        
 	        }
 		}
