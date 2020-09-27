@@ -12,11 +12,11 @@ public class BigIntegerAssignment {
 	private static ArrayList<BigInteger> list = new ArrayList<>();
 	
 	/**
+	 * This method creates and returns an ArrayList of the first n fibonacci numbers
 	 * 
-	 * @param n This is how many 
-	 * @return
+	 * @param n This is how many numbers user wants in final array
+	 * @return returns ArrayList of n fibonacci numbers
 	 */
-	
 	public static ArrayList<BigInteger> fibonacci(int n) {
 				
 		for (int i = 0; i <= n; i++) {
@@ -36,7 +36,11 @@ public class BigIntegerAssignment {
 		return list;
 	}
 	
-	
+	/**
+	 * This is the main method
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		System.out.println(fibonacci(100));
 	}
