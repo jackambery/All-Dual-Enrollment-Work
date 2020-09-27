@@ -21,7 +21,7 @@ public class MatchingBraces {
 	public static boolean bracketCheck(File file) {
 		
 		Scanner input = null;    //initialized if file exists
-		int count = 0;    //should end at zero if file is good
+		int count = 0;    		 //should end at zero if file is good
 		
 		try {
 			input = new Scanner(file);
