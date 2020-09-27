@@ -17,7 +17,7 @@ import javax.swing.JPanel;
  */
 public class Chessboard extends JPanel {
 	
-	//Constants
+	//Pieces
 	private final static String WHITE_PAWN = "\u2659";
 	private final static String WHITE_KING = "\u2654";
 	private final static String WHITE_QUEEN = "\u2655";
