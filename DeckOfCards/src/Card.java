@@ -134,12 +134,24 @@ public class Card {
 	}
 	
 	
-	public int compareTo() {
-		return 0;
+	public int compareTo(Card other) {
+		if (this.getRankInt(this.rank) > other.getRankInt(rank)) {
+			return 1;
+		}
+		if (this.getRankInt(this.rank) < other.getRankInt(rank)) {
+			return -1;
+		}
+		
+		return 0; //if cards have equal ranks
 	}
 	
-	public boolean equals() {
-		return false;
+	public boolean equals(Card other) {
+		if ( (this.getRankInt(rank) == other.getRankInt(rank)) && 
+				(this.getSuitInt(suit) == other.getSuitInt(suit)) ) {
+			return true;
+		}
+		
+		return false; //if cards are not equal
 	}
 
 }
