@@ -1,8 +1,8 @@
 
 public class Card {
 	
-	String suit;
-	String rank;
+	private String suit;
+	private String rank;
 	
 	//HEARTS = 1, SPADES = 2, CLUBS = 3, DIAMOND = 4
 	
@@ -33,6 +33,7 @@ public class Card {
 	}
 	
 	//Methods--------------------------------------------------
+	@Override
 	public String toString() {
 		return rank + " of " + suit;	
 	}
@@ -152,6 +153,10 @@ public class Card {
 		}
 		
 		return false; //if cards are not equal
+	}
+	
+	public int getRank() {
+		return getRankInt(rank);
 	}
 
 }
