@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Deck {
 	
-	//fields
 	private Card[] deck;
 	private int topCard;
 	
@@ -18,18 +17,17 @@ public class Deck {
 				temp++;
 			}	
 		}		
-	}
+	}	
 	
-	public Deck(int cards) {
-		this.deck = new Card[cards];	
-		topCard = deck.length - 1;		
-	}
-	
-	
-	public Deck(boolean shuffled, int cards) {		
-		this.deck = new Card[cards];
-		topCard = deck.length - 1;
-		
+	public Deck(boolean shuffled) {	
+		this.deck = new Card[52];
+		int temp = 0;
+		for (int i = 1; i <= 4; i++) {
+			for (int k = 1; k <= 13; k++) {
+				deck[temp] = new Card(i, k);
+				temp++;
+			}	
+		}	
 		if (shuffled == true) {
 			shuffle();
 		}
@@ -47,37 +45,51 @@ public class Deck {
 		}
 	}
 	
+	@Override
 	public String toString() {
-		String deckStr = "";		
-		for (Card card : deck) {
-			deckStr = deckStr + card.toString() + " , ";
+		String deckStr = "";
+		if (topCard < 51) {
+			for (Card card : deck) {
+				deckStr = deckStr + card.toString() + "\n";
+			}
 		}
+		
+		else {
+	        deckStr += String.format("%-25s %-25s %-25s %-25s", "Clubs", "Diamonds", "Hearts", "Spades");
+	        for(int i = 0; i < 13; i++) {
+	        	deckStr += String.format("%-25s %-25s %-25s %-25s \n", deck[0+i], deck[13+i], deck[26+i], deck[39+i]);
+	        }
+		}	
 		return deckStr;
 	}
 	
-	//does not work
 	public boolean equals(Deck other) {
 		for (int i = 1; i <= deck.length - 1; i++) {
-			if (this.deck[i] != other.deck[i]) {
+			if (this.deck[i].compareTo(other.deck[i]) != 0) {
 				return false;
 			}
 		}
 		return true;
 	}
 	
-	public Deck[] deal(int hands, int cardsPerHand) throws NotEnoughCardsException {
+	public Card[][] deal(int hands, int cardsPerHand) throws NotEnoughCardsException {
 			
 		if (hands * cardsPerHand > topCard) {
 			throw new NotEnoughCardsException("Not enough cards in deck");
 		}			
 		else {
-			Deck[] dealtHands = new Deck[hands];
+			int n = 0;
+			Card[][] cardsToDeal = new Card[hands][cardsPerHand];
 			shuffle();				
-			for(Deck deck : dealtHands) {
-				deck.deck = new Card[cardsPerHand];
-				//need to add cards to each hand
+			for(int row = 0; row <= hands; row++) {
+				for(int col = 0; col <= cardsPerHand; col++) {
+					while (n < hands * cardsPerHand) {
+						cardsToDeal[row][col] = deck[n];
+						n++;
+					}
+				}
 			}
-			return dealtHands;
+			return cardsToDeal;
 		}
 	}	
 	
@@ -102,30 +114,103 @@ public class Deck {
 	}
 	
 	public void selectionSort() {
-		int n = deck.length - 1;		
-		while (n > 1) {
-			int maxPos = 0;
-			for (int k = 1; k < n; k++) {
-				if (deck[k].getRank() > (deck[maxPos].getRank())) {
-					maxPos = k;
+	    for (int i = 0; i < deck.length - 1; i++) {
+	        int minPos = i;
+	        for (int j = i + 1; j < deck.length; j++) {
+	            if (deck[minPos].compareTo(deck[j]) == 1) {
+	                minPos = j;
+	            }
+	        }
+	 
+	        if (minPos != i) {
+	            Card temp = deck[i];
+	            deck[i] = deck[minPos];
+	            deck[minPos] = temp;
+	        }
+	    }
+	}
+	
+	private Card[] temp;
+	public void mergeSort() {
+		int n = deck.length;
+		temp = new Card[n];
+		recursiveSort(deck, 0, n - 1);
+	}
+	private void recursiveSort(Card[] a, int from, int to) {
+		if (to - from < 2) {
+			if (to > from && (a[from].compareTo(a[from]) == -1)) {
+				Card aTemp = a[to];
+				a[to] = a[from];
+				a[from] = aTemp;
+			}
+		}
+		else {
+			int middle = (from + to) / 2;
+			recursiveSort(a, from, middle);
+			recursiveSort(a, middle + 1, to);
+			merge(a, from, middle, to);
+		}
+	}
+	private void merge(Card[] a, int from, int middle, int to) {
+		int i = from;
+		int j = middle + 1;
+		int k = from;
+		
+		while (i <= middle && j <= to) {
+			if (a[i].compareTo(a[j]) == -1) {
+				temp[k] = a[i];
+				i++;
+			}
+			else {
+				temp[k] = a[j];
+				j++;
+			}
+			k++;
+		}
+		while (i <= middle) {
+			temp[k] = a[i];
+			i++;
+			k++;
+		}
+		while (j <= to) {
+			temp[k] = a[j];
+			j++;
+			k++;
+		}
+		
+		for(k = from; k <= to; k++) {
+			a[k] = temp[k];
+		}
+	}
+	
+	public void bubbleSort() {
+		boolean sorted = false;
+		Card temp;
+		while(!sorted) {
+			sorted = true;
+			for (int i = 0; i < deck.length - 1; i++) {
+				if (deck[i].compareTo(deck[i + 1]) == 1) {
+					temp = deck[i];
+					deck[i] = deck[i + 1];
+					deck[i + 1] = temp;
+					sorted = false;
 				}
-			Card temp = deck[maxPos];
-			deck[maxPos] = deck[n - 1];
-			deck[n - 1] = temp;
-			n--;
 			}
 		}
 	}
 	
 	public static void main(String[] args) throws NotEnoughCardsException {
 		Deck testDeck = new Deck();
-		//Deck testDeck2 = new Deck();
-		//testDeck.shuffle();
+		Deck testDeck2 = new Deck();
+		testDeck.shuffle();
 		//testDeck.selectionSort();
+		//testDeck.mergeSort();
+		//testDeck.bubbleSort();
 		//testDeck.deal(8, 8);
 		//System.out.println(testDeck.deck[34].toString());
-		//System.out.println(testDeck.toString());
-		//System.out.println(testDeck.equals(testDeck2));
+		System.out.println(testDeck.toString());
+
+		System.out.println(testDeck.equals(testDeck2));
 	}
 
 }

@@ -1,14 +1,14 @@
 
-public class Card {
+public class Card implements Comparable<Card> {
 	
 	private String suit;
 	private String rank;
 	
-	//HEARTS = 1, SPADES = 2, CLUBS = 3, DIAMOND = 4
+	//CLUBS = 1, DIAMONDS = 2, HEARTS = 3, SPADES = 4
 	
 	//Constructors-------------------------------------------------------
 	public Card() {
-		suit = "spades";
+		suit = "clubs";
 		rank = "ace";		
 	}
 	
@@ -107,13 +107,13 @@ public class Card {
 	public String getSuitStr(int suit) {
 		switch (suit) {
 		case 1:
-			return "hearts";
-		case 2:
-			return "spades";
-		case 3:
 			return "clubs";
-		case 4:
+		case 2:
 			return "diamonds";
+		case 3:
+			return "hearts";
+		case 4:
+			return "spades";
 		default:
 			return "invalid suit number";
 		}
@@ -121,29 +121,47 @@ public class Card {
 	
 	public int getSuitInt(String suit) {
 		switch (suit) {
-		case "hearts":
-			return 1;
-		case "spades":
-			return 2;
 		case "clubs":
-			return 3;
+			return 1;
 		case "diamonds":
+			return 2;
+		case "hearts":
+			return 3;
+		case "spades":
 			return 4;
 		default:
 			return 0;
 		}
 	}
 	
-	
-	public int compareTo(Card other) {
-		if (this.getRankInt(this.rank) > other.getRankInt(rank)) {
+	public int compareSuitTo(Card other) {
+		if (getSuit() > other.getSuit()) {
 			return 1;
 		}
-		if (this.getRankInt(this.rank) < other.getRankInt(rank)) {
+		if (getSuit() < other.getSuit()) {
 			return -1;
 		}
-		
-		return 0; //if cards have equal ranks
+		return 0;
+	}
+	
+	public int compareRankTo(Card other) {
+		if (getRank() > other.getRank()) {
+			return 1;
+		}
+		if (getRank() < other.getRank()) {
+			return -1;
+		}
+		return 0;
+	}
+	
+	@Override
+	public int compareTo(Card other) {
+		if (compareSuitTo(other) != 0) {
+			return compareSuitTo(other);
+		}
+		else {
+			return compareRankTo(other);
+		}
 	}
 	
 	public boolean equals(Card other) {
@@ -157,6 +175,10 @@ public class Card {
 	
 	public int getRank() {
 		return getRankInt(rank);
+	}
+	
+	public int getSuit() {
+		return getSuitInt(suit);
 	}
 
 }
