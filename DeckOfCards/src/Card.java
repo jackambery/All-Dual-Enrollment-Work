@@ -1,4 +1,10 @@
-
+/**
+ * This class allows creation of Card objects using various constructors 
+ * and gives Card objects methods
+ * 
+ * @author Jack Ambery
+ *
+ */
 public class Card implements Comparable<Card> {
 	
 	private String suit;
@@ -6,12 +12,20 @@ public class Card implements Comparable<Card> {
 	
 	//CLUBS = 1, DIAMONDS = 2, HEARTS = 3, SPADES = 4
 	
-	//Constructors-------------------------------------------------------
+	/**
+	 * Default constructor sets Card to ace of clubs.
+	 * This is the first card in a sorted deck.
+	 */
 	public Card() {
 		suit = "clubs";
 		rank = "ace";		
 	}
 	
+	/**
+	 * 
+	 * @param suit integer representation of suit
+	 * @param rank integer representation of rank
+	 */
 	public Card(int suit, int rank) {
 		this.suit = getSuitStr(suit);
 		this.rank = getRankStr(rank);

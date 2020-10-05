@@ -19,7 +19,7 @@ public class Deck {
 		}		
 	}	
 	
-	public Deck(boolean shuffled) {	
+	public Deck(boolean sorted) {	
 		this.deck = new Card[52];
 		int temp = 0;
 		for (int i = 1; i <= 4; i++) {
@@ -28,9 +28,13 @@ public class Deck {
 				temp++;
 			}	
 		}	
-		if (shuffled == true) {
+		if (sorted == false) {
 			shuffle();
 		}
+	}
+	
+	public Deck(int cards) {
+		this.deck = new Card[cards];
 	}
 	
 	public void shuffle() {
@@ -72,24 +76,26 @@ public class Deck {
 		return true;
 	}
 	
-	public Card[][] deal(int hands, int cardsPerHand) throws NotEnoughCardsException {
-			
-		if (hands * cardsPerHand > topCard) {
+	public Deck[] deal(int hands, int cardsPerHand) throws NotEnoughCardsException {
+		int totalCards = hands * cardsPerHand;
+		
+		if (totalCards > topCard) {
 			throw new NotEnoughCardsException("Not enough cards in deck");
 		}			
 		else {
-			int n = 0;
-			Card[][] cardsToDeal = new Card[hands][cardsPerHand];
-			shuffle();				
-			for(int row = 0; row <= hands; row++) {
-				for(int col = 0; col <= cardsPerHand; col++) {
-					while (n < hands * cardsPerHand) {
-						cardsToDeal[row][col] = deck[n];
-						n++;
-					}
+			shuffle();
+			Deck[] decks = new Deck[hands];
+			
+			int index = 0;
+			for (int j = 0; j < cardsPerHand - 1; j++) {
+				for (int i = 0; i < hands - 1; i++) {
+					decks[i] = new Deck(cardsPerHand);
+					decks[i].deck[j] = deck[index];
+					index++;
 				}
 			}
-			return cardsToDeal;
+			
+			return decks;
 		}
 	}	
 	
@@ -98,18 +104,14 @@ public class Deck {
 		int randInt = picker.nextInt(deck.length - 1);
 		Card chosen = deck[randInt];
 		
-		//need to shorten deck by removing chosen card
-		/*
 		for(int i = 0; i <= deck.length - 1; i++) { 
 			if (i < randInt) {
 				continue;
 			}
-			else if (i < deck.length - 2){
+			else if (i < deck.length - 1){
 				deck[i] = deck[i+1];
 			}
-		}
-		*/
-		
+		}		
 		return chosen;
 	}
 	
@@ -201,16 +203,17 @@ public class Deck {
 	
 	public static void main(String[] args) throws NotEnoughCardsException {
 		Deck testDeck = new Deck();
-		Deck testDeck2 = new Deck();
-		testDeck.shuffle();
+		//Deck testDeck2 = new Deck();
+		//testDeck.shuffle();
 		//testDeck.selectionSort();
 		//testDeck.mergeSort();
 		//testDeck.bubbleSort();
 		//testDeck.deal(8, 8);
 		//System.out.println(testDeck.deck[34].toString());
-		System.out.println(testDeck.toString());
 
-		System.out.println(testDeck.equals(testDeck2));
+		//System.out.println(testDeck.toString());
+
+		//System.out.println(testDeck.equals(testDeck2));
 	}
 
 }
