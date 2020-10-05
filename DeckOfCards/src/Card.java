@@ -22,6 +22,7 @@ public class Card implements Comparable<Card> {
 	}
 	
 	/**
+	 * Creates Card with integer suit and ranks and sets fields to parameters
 	 * 
 	 * @param suit integer representation of suit
 	 * @param rank integer representation of rank
@@ -31,22 +32,45 @@ public class Card implements Comparable<Card> {
 		this.rank = getRankStr(rank);
 	}
 	
+	/**
+	 * Creates Card with String suit and ranks
+	 * and sets fields to parameters
+	 * 
+	 * @param suit String representation of suit
+	 * @param rank String representation of rank
+	 */
 	public Card(String suit, String rank) {
 		this.suit = rank;
 		this.rank = rank;		
 	}
 	
+	/**
+	 * Creates Card with String suit and integer rank
+	 * and sets fields to parameters
+	 * 
+	 * @param suit String representation of suit
+	 * @param rank integer representation of rank
+	 */
 	public Card(String suit, int rank) {
 		this.suit = suit;		
 		this.rank = getRankStr(rank);
 	}
 	
+	/**
+	 * Creates Card with integer suit and String rank
+	 * and sets fields to parameters
+	 * 
+	 * @param suit integer representation of suit
+	 * @param rank String representation of rank
+	 */
 	public Card(int suit, String rank) {
 		this.suit = getSuitStr(suit);		
 		this.rank = rank;
 	}
 	
-	//Methods--------------------------------------------------
+	/**
+	 * 
+	 */
 	@Override
 	public String toString() {
 		return rank + " of " + suit;	
