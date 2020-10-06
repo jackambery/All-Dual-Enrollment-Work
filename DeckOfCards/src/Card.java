@@ -40,7 +40,7 @@ public class Card implements Comparable<Card> {
 	 * @param rank String representation of rank
 	 */
 	public Card(String suit, String rank) {
-		this.suit = rank;
+		this.suit = suit;
 		this.rank = rank;		
 	}
 	
@@ -69,13 +69,21 @@ public class Card implements Comparable<Card> {
 	}
 	
 	/**
+	 * toString method for Card class
 	 * 
+	 * @return a String representation of a Card
 	 */
 	@Override
 	public String toString() {
 		return rank + " of " + suit;	
 	}
 	
+	/**
+	 * Gets rank as a String
+	 * 
+	 * @param rank integer representation of rank
+	 * @return the String representation of a given integer rank
+	 */
 	public String getRankStr(int rank) {
 		switch (rank) {
 		case 1:
@@ -109,6 +117,12 @@ public class Card implements Comparable<Card> {
 		}
 	}
 	
+	/**
+	 * Gets rank as an integer
+	 * 
+	 * @param rank String representation of rank
+	 * @return integer representation of a given String rank
+	 */
 	public int getRankInt(String rank) {
 		switch (rank) {
 		case "ace":
@@ -142,6 +156,12 @@ public class Card implements Comparable<Card> {
 		}
 	}
 	
+	/**
+	 * Gets suit as a String
+	 * 
+	 * @param suit integer representation of suit
+	 * @return the String representation of a given integer suit
+	 */
 	public String getSuitStr(int suit) {
 		switch (suit) {
 		case 1:
@@ -157,6 +177,12 @@ public class Card implements Comparable<Card> {
 		}
 	}
 	
+	/**
+	 * Gets suit as an integer
+	 * 
+	 * @param suit String representation of suit
+	 * @return the integer representation of a given String suit
+	 */
 	public int getSuitInt(String suit) {
 		switch (suit) {
 		case "clubs":
@@ -172,6 +198,12 @@ public class Card implements Comparable<Card> {
 		}
 	}
 	
+	/**
+	 * Compares the suits of two cards
+	 * 
+	 * @param other Card being compared to
+	 * @return -1 if this is less than other, 1 if this is greater than other, 0 if this is equal to other
+	 */
 	public int compareSuitTo(Card other) {
 		if (getSuit() > other.getSuit()) {
 			return 1;
@@ -182,6 +214,12 @@ public class Card implements Comparable<Card> {
 		return 0;
 	}
 	
+	/**
+	 * Compares the ranks of two cards
+	 * 
+	 * @param other Card being compared to
+	 * @return -1 if this is less than other, 1 if this is greater than other, 0 if this is equal to other
+	 */
 	public int compareRankTo(Card other) {
 		if (getRank() > other.getRank()) {
 			return 1;
@@ -192,6 +230,12 @@ public class Card implements Comparable<Card> {
 		return 0;
 	}
 	
+	/**
+	 * Compares suits then ranks two cards
+	 * 
+	 * @param other Card being compared to
+	 * @return -1 if this is less than other, 1 if this is greater than other, 0 if this is equal to other
+	 */
 	@Override
 	public int compareTo(Card other) {
 		if (compareSuitTo(other) != 0) {
@@ -202,6 +246,12 @@ public class Card implements Comparable<Card> {
 		}
 	}
 	
+	/**
+	 * Determines true of false if two cards are equal
+	 * 
+	 * @param other Card being compared to 
+	 * @return true if this equals other, false if cards are not equal
+	 */
 	public boolean equals(Card other) {
 		if ( (this.getRankInt(rank) == other.getRankInt(rank)) && 
 				(this.getSuitInt(suit) == other.getSuitInt(suit)) ) {
@@ -211,10 +261,20 @@ public class Card implements Comparable<Card> {
 		return false; //if cards are not equal
 	}
 	
+	/**
+	 * Method to access rank as integer
+	 * 
+	 * @return integer representation of rank
+	 */
 	public int getRank() {
 		return getRankInt(rank);
 	}
 	
+	/**
+	 * Method to access suit as integer
+	 * 
+	 * @return integer representation of suit
+	 */
 	public int getSuit() {
 		return getSuitInt(suit);
 	}

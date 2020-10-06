@@ -34,7 +34,16 @@ public class Deck {
 	}
 	
 	public Deck(int cards) {
+		
 		this.deck = new Card[cards];
+		topCard = deck.length - 1;
+
+		for (int i = 0; i < cards; i++) {
+			Random chooser = new Random();
+			int suitRand = chooser.nextInt(4);
+			int rankRand = chooser.nextInt(13);
+			deck[i] = new Card(suitRand, rankRand);
+		}
 	}
 	
 	public void shuffle() {
@@ -199,21 +208,6 @@ public class Deck {
 				}
 			}
 		}
-	}
-	
-	public static void main(String[] args) throws NotEnoughCardsException {
-		Deck testDeck = new Deck();
-		//Deck testDeck2 = new Deck();
-		//testDeck.shuffle();
-		//testDeck.selectionSort();
-		//testDeck.mergeSort();
-		//testDeck.bubbleSort();
-		//testDeck.deal(8, 8);
-		//System.out.println(testDeck.deck[34].toString());
-
-		//System.out.println(testDeck.toString());
-
-		//System.out.println(testDeck.equals(testDeck2));
 	}
 
 }
