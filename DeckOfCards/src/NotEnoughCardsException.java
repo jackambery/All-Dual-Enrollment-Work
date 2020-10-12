@@ -5,7 +5,7 @@
  *
  */
 public class NotEnoughCardsException extends Exception {
-	
+
 	/**
 	 * Creates new error by calling calling super
 	 * 

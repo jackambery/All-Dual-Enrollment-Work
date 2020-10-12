@@ -26,8 +26,9 @@ public class Card implements Comparable<Card> {
 	 * 
 	 * @param suit integer representation of suit
 	 * @param rank integer representation of rank
+	 * @throws NotValidCardException checks if ranks and suits are valid
 	 */
-	public Card(int suit, int rank) {
+	public Card(int suit, int rank) throws NotValidCardException {
 		this.suit = getSuitStr(suit);
 		this.rank = getRankStr(rank);
 	}
@@ -50,8 +51,9 @@ public class Card implements Comparable<Card> {
 	 * 
 	 * @param suit String representation of suit
 	 * @param rank integer representation of rank
+	 * @throws NotValidCardException checks if rank is valid
 	 */
-	public Card(String suit, int rank) {
+	public Card(String suit, int rank) throws NotValidCardException {
 		this.suit = suit;		
 		this.rank = getRankStr(rank);
 	}
@@ -62,8 +64,9 @@ public class Card implements Comparable<Card> {
 	 * 
 	 * @param suit integer representation of suit
 	 * @param rank String representation of rank
+	 * @throws NotValidCardException checks if suit is valid
 	 */
-	public Card(int suit, String rank) {
+	public Card(int suit, String rank) throws NotValidCardException {
 		this.suit = getSuitStr(suit);		
 		this.rank = rank;
 	}
@@ -83,8 +86,9 @@ public class Card implements Comparable<Card> {
 	 * 
 	 * @param rank integer representation of rank
 	 * @return the String representation of a given integer rank
+	 * @throws NotValidCardException to catch if rank is valid
 	 */
-	public String getRankStr(int rank) {
+	public String getRankStr(int rank) throws NotValidCardException {
 		switch (rank) {
 		case 1:
 			return "ace";
@@ -113,7 +117,7 @@ public class Card implements Comparable<Card> {
 		case 13:
 			return "king";
 		default:
-			return "invalid card type";
+			throw new NotValidCardException("invalid rank number");
 		}
 	}
 	
@@ -122,8 +126,9 @@ public class Card implements Comparable<Card> {
 	 * 
 	 * @param rank String representation of rank
 	 * @return integer representation of a given String rank
+	 * @throws NotValidCardException to catch if rank is valid
 	 */
-	public int getRankInt(String rank) {
+	public int getRankInt(String rank) throws NotValidCardException {
 		switch (rank) {
 		case "ace":
 			return 1;
@@ -152,7 +157,7 @@ public class Card implements Comparable<Card> {
 		case "king":
 			return 13;
 		default:
-			return 0;
+			throw new NotValidCardException("invalid rank");
 		}
 	}
 	
@@ -161,8 +166,9 @@ public class Card implements Comparable<Card> {
 	 * 
 	 * @param suit integer representation of suit
 	 * @return the String representation of a given integer suit
+	 * @throws NotValidCardException to catch if suit is valid
 	 */
-	public String getSuitStr(int suit) {
+	public String getSuitStr(int suit) throws NotValidCardException {
 		switch (suit) {
 		case 1:
 			return "clubs";
@@ -173,7 +179,7 @@ public class Card implements Comparable<Card> {
 		case 4:
 			return "spades";
 		default:
-			return "invalid suit number";
+			throw new NotValidCardException("invalid suit number");
 		}
 	}
 	
@@ -182,8 +188,9 @@ public class Card implements Comparable<Card> {
 	 * 
 	 * @param suit String representation of suit
 	 * @return the integer representation of a given String suit
+	 * @throws NotValidCardException to catch if suit is valid
 	 */
-	public int getSuitInt(String suit) {
+	public int getSuitInt(String suit) throws NotValidCardException {
 		switch (suit) {
 		case "clubs":
 			return 1;
@@ -194,7 +201,7 @@ public class Card implements Comparable<Card> {
 		case "spades":
 			return 4;
 		default:
-			return 0;
+			throw new NotValidCardException("invalid suit");
 		}
 	}
 	
