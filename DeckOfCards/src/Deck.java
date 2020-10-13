@@ -1,63 +1,96 @@
 import java.util.*;
 
+/**
+ * This class creates Decks and contains methods to sort, shuffle, and deal them
+ * 
+ * @author Jack Ambery
+ *
+ */
 public class Deck {
 	
 	private Card[] deck;
 	private int topCard;
 	
-	public Deck() {		
+	/**
+	 * Creates deck of all 52 sorted cards
+	 * 
+	 * @throws NotValidCardException to catch any invalid cards
+	 */
+	public Deck() throws NotValidCardException {		
 		this.deck = new Card[52];
 		topCard = deck.length - 1;
 		
 		int temp = 0;
 		
 		for (int i = 1; i <= 4; i++) {
-			for (int k = 1; k <= 13; k++) {
-				deck[temp] = new Card(i, k);
-				temp++;
+			try {
+				for (int k = 1; k <= 13; k++) {
+					deck[temp] = new Card(i, k);
+					temp++;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}	
 		}		
 	}	
 	
-	public Deck(boolean sorted) {	
+	/**
+	 * Creates a 52 card deck shuffled to sorted, specified by boolean parameter
+	 * 
+	 * @param sorted true if deck is to be sorted, false if deck is to be shuffled
+	 * @throws NotValidCardException to catch any invalid cards
+	 */
+	public Deck(boolean sorted) throws NotValidCardException {	
 		this.deck = new Card[52];
 		int temp = 0;
-		for (int i = 1; i <= 4; i++) {
-			for (int k = 1; k <= 13; k++) {
-				deck[temp] = new Card(i, k);
-				temp++;
+			for (int i = 1; i <= 4; i++) {
+				for (int k = 1; k <= 13; k++) {
+					deck[temp] = new Card(i, k);
+					temp++;
+				}	
 			}	
-		}	
 		if (sorted == false) {
 			shuffle();
 		}
 	}
 	
-	public Deck(int cards) {
+	/**
+	 * Creates deck of size cards, filled with random cards
+	 * 
+	 * @param cards specifies number of cards in deck
+	 * @throws NotValidCardException to catch any invalid cards
+	 */
+	public Deck(int cards) throws NotValidCardException {
 		
 		this.deck = new Card[cards];
 		topCard = deck.length - 1;
 
 		for (int i = 0; i < cards; i++) {
-			Random chooser = new Random();
-			int suitRand = chooser.nextInt(4);
-			int rankRand = chooser.nextInt(13);
+			int suitRand = (int)(Math.random() * 4 + 1);
+			int rankRand = (int)(Math.random() * 13 + 1);
 			deck[i] = new Card(suitRand, rankRand);
 		}
 	}
 	
+	/**
+	 * This method shuffles a deck of cards
+	 * 
+	 */
 	public void shuffle() {
-		
-		Random random = new Random();
-		
+				
 		for (int i = 1; i < this.deck.length - 1; i++) {
-			int randPos = random.nextInt(this.deck.length); //position in the array
+			int randPos = (int)(Math.random() * this.deck.length - 1); //position in the array
 			Card temp = this.deck[i];						//card to be switched
 			this.deck[i] = this.deck[randPos];				//switches temp card and card at randPos
 			this.deck[randPos] = temp;						//switches randPos card to temp card
 		}
 	}
 	
+	/**
+	 * Converts deck to a string. Prints one card per line if topCard <= 51
+	 * Prints in 4 sorted columns if topCard = 52
+	 * 
+	 */
 	@Override
 	public String toString() {
 		String deckStr = "";
@@ -68,7 +101,7 @@ public class Deck {
 		}
 		
 		else {
-	        deckStr += String.format("%-25s %-25s %-25s %-25s", "Clubs", "Diamonds", "Hearts", "Spades");
+	        deckStr += String.format("%-25s %-25s %-25s %-25s \n", "Clubs:", "Diamonds:", "Hearts:", "Spades:");
 	        for(int i = 0; i < 13; i++) {
 	        	deckStr += String.format("%-25s %-25s %-25s %-25s \n", deck[0+i], deck[13+i], deck[26+i], deck[39+i]);
 	        }
@@ -76,6 +109,12 @@ public class Deck {
 		return deckStr;
 	}
 	
+	/**
+	 * Determines if two decks are equal
+	 * 
+	 * @param other deck to be compared to 
+	 * @return true if decks are equal, false if not
+	 */
 	public boolean equals(Deck other) {
 		for (int i = 1; i <= deck.length - 1; i++) {
 			if (this.deck[i].compareTo(other.deck[i]) != 0) {
@@ -85,7 +124,17 @@ public class Deck {
 		return true;
 	}
 	
-	public Deck[] deal(int hands, int cardsPerHand) throws NotEnoughCardsException {
+	/**
+	 * This method creates and return an array of hands each with a certain amount of cards, 
+	 * Throws exception if there are too little cards
+	 * 
+	 * @param hands amount of hands or players
+	 * @param cardsPerHand amount of cards per hand
+	 * @return an array of decks of size cardsPerHand
+	 * @throws NotEnoughCardsException if there are not enough cards to create enough hands
+	 * @throws NotValidCardException to catch any invalid cards
+	 */
+	public Deck[] deal(int hands, int cardsPerHand) throws NotEnoughCardsException, NotValidCardException {
 		int totalCards = hands * cardsPerHand;
 		
 		if (totalCards > topCard) {
@@ -97,7 +146,7 @@ public class Deck {
 			
 			int index = 0;
 			for (int j = 0; j < cardsPerHand - 1; j++) {
-				for (int i = 0; i < hands - 1; i++) {
+				for (int i = 0; i < hands; i++) {
 					decks[i] = new Deck(cardsPerHand);
 					decks[i].deck[j] = deck[index];
 					index++;
@@ -108,6 +157,12 @@ public class Deck {
 		}
 	}	
 	
+	/**
+	 * Picks a card from a deck then removes it from that deck and shortens deck 
+	 * by making topCard one less
+	 * 
+	 * @return a random card from the deck
+	 */
 	public Card pick() {
 		Random picker = new Random();
 		int randInt = picker.nextInt(deck.length - 1);
@@ -120,10 +175,15 @@ public class Deck {
 			else if (i < deck.length - 1){
 				deck[i] = deck[i+1];
 			}
-		}		
+		}	
+		topCard--;
 		return chosen;
 	}
 	
+	/**
+	 * Performs a selection sort on the deck
+	 * 
+	 */
 	public void selectionSort() {
 	    for (int i = 0; i < deck.length - 1; i++) {
 	        int minPos = i;
@@ -142,11 +202,22 @@ public class Deck {
 	}
 	
 	private Card[] temp;
+	/** 
+	 * Performs a mergesort on the deck
+	 * 
+	 */
 	public void mergeSort() {
 		int n = deck.length;
 		temp = new Card[n];
 		recursiveSort(deck, 0, n - 1);
 	}
+	/**
+	 * Method used in mergesort
+	 * 
+	 * @param a deck being sorted
+	 * @param from int to represent spot in deck
+	 * @param to second int to represent spot in deck
+	 */
 	private void recursiveSort(Card[] a, int from, int to) {
 		if (to - from < 2) {
 			if (to > from && (a[from].compareTo(a[from]) == -1)) {
@@ -162,6 +233,14 @@ public class Deck {
 			merge(a, from, middle, to);
 		}
 	}
+	/**
+	 * Method used for mergesort
+	 * 
+	 * @param a deck being sorted
+	 * @param from int to represent spot in deck
+	 * @param middle int to represent spot in deck
+	 * @param to int to represent spot in deck
+	 */
 	private void merge(Card[] a, int from, int middle, int to) {
 		int i = from;
 		int j = middle + 1;
@@ -194,6 +273,10 @@ public class Deck {
 		}
 	}
 	
+	/**
+	 * Performs a bubbleSort on the deck
+	 * 
+	 */
 	public void bubbleSort() {
 		boolean sorted = false;
 		Card temp;

@@ -210,8 +210,9 @@ public class Card implements Comparable<Card> {
 	 * 
 	 * @param other Card being compared to
 	 * @return -1 if this is less than other, 1 if this is greater than other, 0 if this is equal to other
+	 * @throws NotValidCardException catches if suit is valid
 	 */
-	public int compareSuitTo(Card other) {
+	public int compareSuitTo(Card other) throws NotValidCardException {
 		if (getSuit() > other.getSuit()) {
 			return 1;
 		}
@@ -226,8 +227,9 @@ public class Card implements Comparable<Card> {
 	 * 
 	 * @param other Card being compared to
 	 * @return -1 if this is less than other, 1 if this is greater than other, 0 if this is equal to other
+	 * @throws NotValidCardException catches if rank is valid
 	 */
-	public int compareRankTo(Card other) {
+	public int compareRankTo(Card other) throws NotValidCardException {
 		if (getRank() > other.getRank()) {
 			return 1;
 		}
@@ -245,12 +247,17 @@ public class Card implements Comparable<Card> {
 	 */
 	@Override
 	public int compareTo(Card other) {
-		if (compareSuitTo(other) != 0) {
-			return compareSuitTo(other);
+		try {
+			if (compareSuitTo(other) != 0) {
+				return compareSuitTo(other);
+			}
+			else {
+				return compareRankTo(other);
+			}
+		} catch (NotValidCardException e) {
+			e.printStackTrace();
 		}
-		else {
-			return compareRankTo(other);
-		}
+		return -2; //not sure why I need a try/catch here and can't use a throw
 	}
 	
 	/**
@@ -258,8 +265,9 @@ public class Card implements Comparable<Card> {
 	 * 
 	 * @param other Card being compared to 
 	 * @return true if this equals other, false if cards are not equal
+	 * @throws NotValidCardException catches if rank and suit are valid
 	 */
-	public boolean equals(Card other) {
+	public boolean equals(Card other) throws NotValidCardException {
 		if ( (this.getRankInt(rank) == other.getRankInt(rank)) && 
 				(this.getSuitInt(suit) == other.getSuitInt(suit)) ) {
 			return true;
@@ -272,8 +280,9 @@ public class Card implements Comparable<Card> {
 	 * Method to access rank as integer
 	 * 
 	 * @return integer representation of rank
+	 * @throws NotValidCardException to catch if rank is valid
 	 */
-	public int getRank() {
+	public int getRank() throws NotValidCardException {
 		return getRankInt(rank);
 	}
 	
@@ -281,8 +290,9 @@ public class Card implements Comparable<Card> {
 	 * Method to access suit as integer
 	 * 
 	 * @return integer representation of suit
+	 * @throws NotValidCardException to catch if suit is valid
 	 */
-	public int getSuit() {
+	public int getSuit() throws NotValidCardException {
 		return getSuitInt(suit);
 	}
 
