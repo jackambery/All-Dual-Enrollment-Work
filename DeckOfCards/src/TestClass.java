@@ -13,7 +13,7 @@ public class TestClass {
 		Deck deck1 = new Deck();
 		Deck deck2 = new Deck(51);
 		Deck deck3 = new Deck(10);
-		Deck deck4 = new Deck(2);
+		Deck deck4 = new Deck(30);
 		Deck deck5 = new Deck(false);
 		Deck deck6 = new Deck(true);
 		Deck deck7 = new Deck(); //should be same as deck 1
@@ -97,10 +97,10 @@ public class TestClass {
 //		System.out.println(deck6);
 
 		System.out.println("MergeSort Testing:");
-		System.out.println("Before sort:\n" + deck3);
-		deck3.shuffle();
-		deck3.mergeSort();
-		System.out.println("After sort:\n" + deck3);
+		System.out.println("Before sort:\n" + deck4);
+		deck4.shuffle();
+		deck4.mergeSort();
+		System.out.println("After sort:\n" + deck4);
 //		deck2.shuffle();
 //		deck2.mergeSort();
 //		System.out.println(deck2);

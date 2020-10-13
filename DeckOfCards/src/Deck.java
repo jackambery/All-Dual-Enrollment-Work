@@ -207,7 +207,7 @@ public class Deck {
 	 * 
 	 */
 	public void mergeSort() {
-		int n = deck.length;
+		int n = deck.length - 1;
 		temp = new Card[n];
 		recursiveSort(deck, 0, n - 1);
 	}
