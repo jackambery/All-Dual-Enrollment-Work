@@ -11,13 +11,11 @@ public class DocumentIndex {
 	}
 	
 	public void addWord(String word, int num) {
-		if (entries.containsKey(word)) {
-			entries.get(word).add(num);
+		word = word.toUpperCase();
+		if (!(entries.containsKey(word))) {
+			entries.put(word, new IndexEntry(word));
 		}
-		else {
-			IndexEntry newEntry = entries.put(word, new IndexEntry(word));
-			newEntry.add(num);
-		}
+		entries.get(word).add(num);
 	}
 	
 	public void addAllWords(String str, int num) {
@@ -25,6 +23,10 @@ public class DocumentIndex {
 		for (String s : words) {
 			addWord(s, num);
 		}
+	}
+	
+	public TreeMap<String, IndexEntry> getEntries() {
+		return entries;
 	}
 
 }

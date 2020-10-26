@@ -27,6 +27,7 @@ public class IndexEntry {
 		while (iterator.hasNext()) {
 			str += word + iterator.next() + " ";
 		}
+		str.toUpperCase();
 		return str;
 	}
 
