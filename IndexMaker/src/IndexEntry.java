@@ -23,9 +23,9 @@ public class IndexEntry {
 	
 	public String toString() {
 		Iterator<Integer> iterator = lines.iterator();
-		String str = "";
+		String str = word + ": ";
 		while (iterator.hasNext()) {
-			str += word + iterator.next() + " ";
+			str += iterator.next() + ", ";
 		}
 		str.toUpperCase();
 		return str;
