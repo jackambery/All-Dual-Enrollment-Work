@@ -11,39 +11,42 @@ public class IndexMaker {
 //		}
 //	}
 //	
-	public static void createOutput(File output) {
-
-	}
+//	public static void createOutput(File output) {
+//
+//	}
 //	
 //--------------------------------------------------------------------------------
 	public static void main(String[] args) throws FileNotFoundException {
 		
-		DocumentIndex index = new DocumentIndex();
 		Scanner kb = new Scanner(System.in);
-		String inPathname = "";
-		String outPathname = "";
+		DocumentIndex index = new DocumentIndex();
 		
+		//Input Creation
+		String inPathname = "";
+
 		System.out.println("What is the input file?");
 		inPathname += kb.nextLine();
 		
 		File inputFile = new File(inPathname);
 		Scanner inputScanner = new Scanner(inputFile);
-		
 		int lineNumber = 1;
 		while (inputScanner.hasNextLine()) {
 			index.addAllWords(inputScanner.nextLine(), lineNumber);
 			lineNumber++;
 		}
-
-		//checkInput(inputFile);
+		
+		
+		//Output Creation
+		String outPathname = "";
 		
 		System.out.println("What is the output file?"
-						+ "\nLeave blank to create output file."
-						+ "\nIf output file entered is not found, one will be namedma");
+				+ "\nLeave blank to create output file."
+				+ "\nIf output file entered is not found, one will be created");
 		outPathname += kb.nextLine();
 		
 		//create and check output file
 		File outputFile = new File(outPathname);
+		
 		if (!(outputFile.exists())) {
 			String name = inPathname + "Index";
 			File defaultTest = new File(name);
@@ -59,14 +62,7 @@ public class IndexMaker {
 				outputWriter.println(entry.toString());
 			}
 			outputWriter.close();
-		}
-//		createOutput(outputFile);
-		
-
-		
-
-		
-		
+		}		
 		
 		kb.close();
 		inputScanner.close();

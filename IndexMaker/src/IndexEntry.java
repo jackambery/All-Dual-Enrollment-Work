@@ -22,13 +22,16 @@ public class IndexEntry {
 	}
 	
 	public String toString() {
-		Iterator<Integer> iterator = lines.iterator();
-		String str = word + ": ";
-		while (iterator.hasNext()) {
-			str += iterator.next() + ", ";
+		if (!(word.equals("") || word.equals(" "))) {
+			Iterator<Integer> iterator = lines.iterator();
+			String str = word + ": ";
+			while (iterator.hasNext()) {
+				str += iterator.next() + ", ";
+			}
+			str.toUpperCase();
+			return str;
 		}
-		str.toUpperCase();
-		return str;
+		return "";
 	}
 
 }
