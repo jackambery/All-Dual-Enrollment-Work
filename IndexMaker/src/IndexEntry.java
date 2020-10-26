@@ -22,14 +22,14 @@ public class IndexEntry {
 	}
 	
 	public String toString() {
-		if (!(word.equals("") || word.equals(" "))) {
+		if (!(word.equals(""))) {
 			Iterator<Integer> iterator = lines.iterator();
 			String str = word + ": ";
 			while (iterator.hasNext()) {
 				str += iterator.next() + ", ";
 			}
 			str.toUpperCase();
-			return str;
+			return str.substring(0, str.length() - 2); //substring gets rid of last comma on end
 		}
 		return "";
 	}

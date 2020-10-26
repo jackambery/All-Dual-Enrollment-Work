@@ -5,17 +5,6 @@ import java.util.Scanner;
 
 public class IndexMaker {
 
-//	public static void checkInput(String input) {
-//		if (!(input.contains(".txt"))) {
-//			input += ".txt";
-//		}
-//	}
-//	
-//	public static void createOutput(File output) {
-//
-//	}
-//	
-//--------------------------------------------------------------------------------
 	public static void main(String[] args) throws FileNotFoundException {
 		
 		Scanner kb = new Scanner(System.in);
@@ -48,6 +37,9 @@ public class IndexMaker {
 		File outputFile = new File(outPathname);
 		
 		if (!(outputFile.exists())) {
+			if (inPathname.contains(".txt")) {
+				inPathname = inPathname.substring(0, inPathname.indexOf(".txt"));
+			}
 			String name = inPathname + "Index";
 			File defaultTest = new File(name);
 			PrintWriter outputWriter = new PrintWriter(defaultTest);

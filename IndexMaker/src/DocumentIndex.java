@@ -19,7 +19,7 @@ public class DocumentIndex {
 	}
 	
 	public void addAllWords(String str, int num) {
-		String[] words = str.split(" ");
+		String[] words = str.split("[ \\-.;:,!?]");
 		for (String s : words) {
 			addWord(s, num);
 		}
