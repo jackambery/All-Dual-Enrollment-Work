@@ -3,14 +3,30 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+/**
+ * Creates DocumentIndex from the input file and 
+ * writes the DocumentIndex to an output file
+ * 
+ * @author Jack Ambery
+ */
 public class IndexMaker {
-
+	
+	/**
+	 * A
+	 * Main method, asks user for input and output file
+	 * If input is not found, program throws exception
+	 * If output is not found, creates new file named the input file's name plus "Index"
+	 * Uses Scanner to read files and PrintWriter to write to files
+	 * 
+	 * @param args 
+	 * @throws FileNotFoundException if input file does not exist
+	 */
 	public static void main(String[] args) throws FileNotFoundException {
 		
 		Scanner kb = new Scanner(System.in);
 		DocumentIndex index = new DocumentIndex();
 		
-		//Input Creation
+		//Input
 		String inPathname = "";
 
 		System.out.println("What is the input file?");
@@ -25,7 +41,7 @@ public class IndexMaker {
 		}
 		
 		
-		//Output Creation
+		//Output
 		String outPathname = "";
 		
 		System.out.println("What is the output file?"
