@@ -41,6 +41,7 @@ public class Deck {
 	 * @throws NotValidCardException to catch any invalid cards
 	 */
 	public Deck(boolean sorted) throws NotValidCardException {	
+		topCard = deck.length - 1;
 		this.deck = new Card[52];
 		int temp = 0;
 			for (int i = 1; i <= 4; i++) {
@@ -115,13 +116,22 @@ public class Deck {
 	 * @param other deck to be compared to 
 	 * @return true if decks are equal, false if not
 	 */
-	public boolean equals(Deck other) {
-		for (int i = 1; i <= deck.length - 1; i++) {
-			if (this.deck[i].compareTo(other.deck[i]) != 0) {
-				return false;
+	@Override
+	public boolean equals(Object other) {
+		if (other instanceof Deck) {
+			Deck otherDeck = (Deck) other;
+			for (int i = 1; i <= topCard; i++) {
+				try {
+					if (!this.deck[i].equals(otherDeck.deck[i])) {
+						return false;
+					}
+				} catch (NotValidCardException e) {
+					e.printStackTrace();
+				}
 			}
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
 	/**
@@ -141,7 +151,6 @@ public class Deck {
 			throw new NotEnoughCardsException("Not enough cards in deck");
 		}			
 		else {
-			shuffle();
 			Deck[] decks = new Deck[hands];
 			
 			int index = 0;
@@ -165,14 +174,14 @@ public class Deck {
 	 */
 	public Card pick() {
 		Random picker = new Random();
-		int randInt = picker.nextInt(deck.length - 1);
+		int randInt = picker.nextInt(topCard);
 		Card chosen = deck[randInt];
 		
 		for(int i = 0; i <= deck.length - 1; i++) { 
 			if (i < randInt) {
 				continue;
 			}
-			else if (i < deck.length - 1){
+			else if (i < topCard){
 				deck[i] = deck[i+1];
 			}
 		}	
