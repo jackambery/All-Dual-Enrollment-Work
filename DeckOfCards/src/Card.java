@@ -267,10 +267,13 @@ public class Card implements Comparable<Card> {
 	 * @return true if this equals other, false if cards are not equal
 	 * @throws NotValidCardException catches if rank and suit are valid
 	 */
-	public boolean equals(Card other) throws NotValidCardException {
-		if ( (this.getRankInt(rank) == other.getRankInt(rank)) && 
-				(this.getSuitInt(suit) == other.getSuitInt(suit)) ) {
-			return true;
+	//@Override can not override b/c of exception
+	public boolean equals(Card other) throws NotValidCardException  {
+		if (other instanceof Card) {
+			if ( (this.getRankInt(rank) == other.getRankInt(rank)) && 
+					(this.getSuitInt(suit) == other.getSuitInt(suit)) ) {
+				return true;
+			}
 		}
 		
 		return false; //if cards are not equal

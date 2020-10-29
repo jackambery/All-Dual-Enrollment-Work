@@ -1,211 +1,108 @@
 
-Card Testing:
-ace of clubs
-ace of clubs
-ace of clubs
-ace of clubs
-ace of clubs
-
-Deck Tests:
-Printing Deck Before Shuffling:
-Deck 1:
-Clubs:                    Diamonds:                 Hearts:                   Spades:                   
-ace of clubs              ace of diamonds           ace of hearts             ace of spades             
-2 of clubs                2 of diamonds             2 of hearts               2 of spades               
-3 of clubs                3 of diamonds             3 of hearts               3 of spades               
-4 of clubs                4 of diamonds             4 of hearts               4 of spades               
-5 of clubs                5 of diamonds             5 of hearts               5 of spades               
-6 of clubs                6 of diamonds             6 of hearts               6 of spades               
-7 of clubs                7 of diamonds             7 of hearts               7 of spades               
-8 of clubs                8 of diamonds             8 of hearts               8 of spades               
-9 of clubs                9 of diamonds             9 of hearts               9 of spades               
-10 of clubs               10 of diamonds            10 of hearts              10 of spades              
-jack of clubs             jack of diamonds          jack of hearts            jack of spades            
-queen of clubs            queen of diamonds         queen of hearts           queen of spades           
-king of clubs             king of diamonds          king of hearts            king of spades            
-
-Deck 3:
-queen of spades
-queen of hearts
-king of hearts
-jack of spades
-2 of diamonds
-ace of hearts
-7 of spades
-7 of clubs
-10 of hearts
-7 of spades
-
-Equals Testing:
-true
-false
-
 SelectionSort Testing:
 Before sort:
-queen of spades
-queen of hearts
-king of hearts
-jack of spades
-2 of diamonds
-ace of hearts
-7 of spades
-7 of clubs
-10 of hearts
-7 of spades
-
-After sort:
-2 of diamonds
-ace of hearts
-10 of hearts
-king of hearts
-queen of hearts
-7 of spades
-jack of spades
-7 of clubs
-queen of spades
-7 of spades
-
-BubbleSort Testing:
-Before sort:
-2 of diamonds
-ace of hearts
-10 of hearts
-king of hearts
-queen of hearts
-7 of spades
-jack of spades
-7 of clubs
-queen of spades
-7 of spades
-
-After sort:
-7 of clubs
-2 of diamonds
-ace of hearts
-queen of hearts
-10 of hearts
-king of hearts
-7 of spades
-jack of spades
-queen of spades
-7 of spades
-
-MergeSort Testing:
-Before sort:
-6 of spades
-jack of clubs
-8 of spades
-6 of spades
-king of clubs
-7 of spades
-2 of hearts
-jack of hearts
-ace of spades
-2 of diamonds
-jack of clubs
-ace of spades
-7 of diamonds
-5 of clubs
-queen of diamonds
-2 of clubs
-9 of clubs
-ace of diamonds
-6 of diamonds
-jack of diamonds
-queen of hearts
-7 of clubs
-10 of diamonds
-6 of hearts
-2 of spades
-9 of clubs
-5 of clubs
-2 of clubs
-jack of spades
-ace of clubs
-
-After sort:
-2 of clubs
-5 of clubs
-5 of clubs
-7 of clubs
-9 of clubs
-9 of clubs
-jack of clubs
-king of clubs
-ace of diamonds
-7 of diamonds
-2 of clubs
-10 of diamonds
-2 of hearts
-6 of hearts
-jack of hearts
-jack of diamonds
-queen of hearts
-6 of diamonds
-ace of spades
-2 of spades
-2 of diamonds
-6 of spades
-6 of spades
-queen of diamonds
-7 of spades
-8 of spades
-jack of clubs
-jack of spades
-ace of spades
-ace of clubs
-
-Deal Testing:
-8 decks of 5 cards:
-5 of diamonds
-jack of hearts
-3 of spades
-10 of hearts
-king of hearts
-
-4 of clubs
-4 of hearts
-ace of clubs
+king of diamonds
 3 of diamonds
-jack of diamonds
-
-5 of spades
-king of hearts
-jack of spades
+4 of spades
 4 of diamonds
+3 of diamonds
 9 of hearts
+king of spades
+king of spades
+4 of diamonds
+king of clubs
+ace of hearts
+8 of hearts
+king of clubs
+4 of spades
+2 of hearts
+8 of clubs
+king of diamonds
+5 of diamonds
+2 of clubs
+4 of clubs
+8 of hearts
+3 of diamonds
+5 of spades
+10 of spades
+5 of diamonds
+queen of hearts
+10 of spades
+2 of clubs
+queen of clubs
+jack of diamonds
+ace of spades
+10 of spades
+7 of diamonds
+jack of hearts
+6 of spades
+3 of clubs
+10 of spades
+king of hearts
+ace of clubs
+6 of hearts
+5 of spades
+king of diamonds
+10 of hearts
+jack of hearts
+5 of spades
+2 of hearts
+6 of hearts
+9 of spades
+2 of clubs
+ace of clubs
+4 of spades
 
+After sort:
+ace of clubs
+ace of clubs
+2 of clubs
+2 of clubs
+2 of clubs
+3 of clubs
+4 of clubs
+8 of clubs
+queen of clubs
+king of clubs
+king of clubs
+3 of diamonds
+3 of diamonds
+3 of diamonds
+4 of diamonds
+4 of diamonds
+5 of diamonds
+5 of diamonds
+7 of diamonds
+jack of diamonds
+king of diamonds
+king of diamonds
+king of diamonds
+ace of hearts
+2 of hearts
+2 of hearts
+6 of hearts
+6 of hearts
+8 of hearts
+8 of hearts
+9 of hearts
+10 of hearts
+jack of hearts
+jack of hearts
+queen of hearts
+king of hearts
+ace of spades
+4 of spades
+4 of spades
+4 of spades
+5 of spades
+5 of spades
+5 of spades
 6 of spades
 9 of spades
-9 of diamonds
-6 of spades
-8 of diamonds
-
-4 of clubs
-7 of diamonds
 10 of spades
-queen of spades
-2 of spades
+10 of spades
+10 of spades
+10 of spades
+king of spades
+king of spades
 
-8 of clubs
-king of clubs
-4 of spades
-10 of hearts
-queen of clubs
-
-queen of diamonds
-jack of spades
-4 of spades
-king of hearts
-jack of clubs
-
-3 of clubs
-3 of diamonds
-8 of spades
-7 of clubs
-8 of hearts
-
-20 hands of 20 cards:
-Exception in thread "main" NotEnoughCardsException: Not enough cards in deck
-	at Deck.deal(Deck.java:141)
-	at TestClass.main(TestClass.java:127)

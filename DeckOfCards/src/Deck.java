@@ -183,36 +183,35 @@ public class Deck {
 	/**
 	 * Performs a selection sort on the deck
 	 * 
-	 */
+	 */	
 	public void selectionSort() {
-	    for (int i = 0; i < deck.length - 1; i++) {
-	        int minPos = i;
-	        for (int j = i + 1; j < deck.length; j++) {
-	            if (deck[minPos].compareTo(deck[j]) == 1) {
-	                minPos = j;
-	            }
-	        }
-	 
-	        if (minPos != i) {
-	            Card temp = deck[i];
-	            deck[i] = deck[minPos];
-	            deck[minPos] = temp;
-	        }
-	    }
+		for(int n = deck.length; n > 1; n--) {
+			
+			int iMax = 0;
+			for (int i = 1; i < n; i++) {
+				if (deck[i].compareTo(deck[iMax]) == 1) {
+					iMax = i;
+				}
+			}
+			Card deckTemp = deck[iMax];
+			deck[iMax] = deck[n - 1];
+			deck[n - 1] = deckTemp;
+		}
 	}
+	
 	
 	private Card[] temp;
 	/** 
-	 * Performs a mergesort on the deck
+	 * Performs a merge sort on the deck
 	 * 
 	 */
 	public void mergeSort() {
-		int n = deck.length - 1;
+		int n = deck.length;
 		temp = new Card[n];
 		recursiveSort(deck, 0, n - 1);
 	}
 	/**
-	 * Method used in mergesort
+	 * Method used in merge sort
 	 * 
 	 * @param a deck being sorted
 	 * @param from int to represent spot in deck
@@ -220,7 +219,7 @@ public class Deck {
 	 */
 	private void recursiveSort(Card[] a, int from, int to) {
 		if (to - from < 2) {
-			if (to > from && (a[from].compareTo(a[from]) == -1)) {
+			if (to > from && (a[to].compareTo(a[from]) == -1)) {
 				Card aTemp = a[to];
 				a[to] = a[from];
 				a[from] = aTemp;
@@ -234,7 +233,7 @@ public class Deck {
 		}
 	}
 	/**
-	 * Method used for mergesort
+	 * Method used for merge sort
 	 * 
 	 * @param a deck being sorted
 	 * @param from int to represent spot in deck

@@ -5,7 +5,7 @@ import java.util.Comparator;
  * @author Jack Ambery
  *
  */
-public abstract class CardComparator implements Comparator<Card> {
+public abstract class CardComparatorSuitAndRank implements Comparator<Card> {
 	
 	/**
 	 * Compares two cards to determine which is greater/lesser
