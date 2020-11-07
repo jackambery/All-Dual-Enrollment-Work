@@ -1,5 +1,5 @@
 // The AssassinNode class is used to store the information for one
-// player in the game of assassin. Initiallly the "killer" field
+// player in the game of assassin. Initially the "killer" field
 // is set to null, but when the person is killed, this should be
 // set to the name of the killer.
  

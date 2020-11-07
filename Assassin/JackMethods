@@ -1,0 +1,21 @@
+	public boolean killRingContains(String name) {
+		AssassinNode temp = firstKillNode;
+		if (!(temp == null)) {
+			if (temp.name.equalsIgnoreCase(name)) {
+				return true;
+			}
+			temp = temp.next;
+		}
+		return false;
+	}
+	
+	public void printGraveyard() {
+		String str = "";
+		AssassinNode temp = firstGraveNode;
+		if (!(temp == null)) {
+			str += temp.name + ", ";
+			temp = temp.next;
+		} 
+		System.out.print(str);
+			
+	}
