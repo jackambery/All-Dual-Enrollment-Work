@@ -36,7 +36,7 @@ public class AssassinMain {
         String killer = "";
         Scanner kb = new Scanner(System.in);
         while (winner == null) {
-        	System.out.println(am.killRingContains("jack"));
+        //System.out.println(am.killRingContains("jack"));
           System.out.println("Current Kill Ring:");
           am.printKillRing();
           System.out.println("Current Graveyard:");

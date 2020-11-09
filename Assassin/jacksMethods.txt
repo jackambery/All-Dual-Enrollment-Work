@@ -19,3 +19,68 @@
 		System.out.print(str);
 			
 	}
+
+public AssassinManager(List<String> names) {
+	if (names.size() < 1) {
+		throw new IllegalArgumentException("no names given");
+	}
+	firstKillNode = new AssassinNode(names.get(0));
+	AssassinNode lastKillNode = firstKillNode;
+	for (int i = 1; i < names.size(); i++) {
+		lastKillNode.next = new AssassinNode(names.get(i));
+		lastKillNode = lastKillNode.next;
+	}
+}
+
+	public boolean graveyardContains(String name)
+	{
+		AssassinNode node = firstGraveNode; 
+		int i = 0;
+		while(i<1)
+		{
+			if(node!=null)
+			{
+				if(node.name.equalsIgnoreCase(name))
+				{
+					return true;
+				}
+				node = node.next;
+			}
+			i++;
+		}
+		return false;
+	}
+	public String winner()
+	{
+		if(gameOver() == false)
+			return null;
+		return firstKillNode.name;
+	}
+
+public class LukeAssassin {
+	public boolean gameOver() {
+		if(firstKillNode.next == null)
+			return true;
+
+			return false;
+
+		}
+
+		public void printKillRing() {
+
+		for(AssassinNode k = firstKillNode; k!=null; k = k.next) {
+			if(k.next!=null) {
+				System.out.print("    <" + k.name + ">");
+				System.out.print(" is stalking ");
+				System.out.println("<" + k.next.name + ">");
+			}
+			else
+			{
+				System.out.print("    <" + k.name + ">");
+				System.out.print(" is stalking ");
+				System.out.println("<" + firstKillNode.name + ">");
+			}
+		}
+
+		}
+}
