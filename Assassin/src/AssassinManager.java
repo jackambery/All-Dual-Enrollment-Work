@@ -32,26 +32,7 @@ public class AssassinManager {
 		} 
 		System.out.print(str);
 			
-	}
-	
-	//luke's
-//	public void printGraveyard() {
-//		     ArrayList<String> dead = new ArrayList<String>();
-//		     //ArrayList<String> killers = new ArrayList<String>();
-//		 
-//		    for(AssassinNode k = firstGraveNode; k!=null; k = k.next) {
-//		       dead.add(k.name);
-//		       //killers.add(dead.killer);
-//		    }
-//		      
-//		    for(int n = dead.size() - 1; n > 0; n--) {
-//		       System.out.print("    <" + dead.get(n) + ">");
-//		       System.out.print(" was killed by ");
-//		       //System.out.println("<" + killers.get(n).killer + ">");
-//		    }
-//		         
-//		   }
-//		  
+	}	  
 	
 	public void printKillRing() {
 		String str = "";
@@ -68,7 +49,7 @@ public class AssassinManager {
 	public boolean killRingContains(String name) {
 		AssassinNode temp = firstKillNode;
 		if (!(temp == null)) {
-			if (temp.name.equalsIgnoreCase(name)) {
+			if (temp.name.toUpperCase().equals(name.toUpperCase())) {
 				return true;
 			}
 			temp = temp.next;

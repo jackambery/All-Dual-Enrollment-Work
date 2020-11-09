@@ -1,7 +1,7 @@
 	public boolean killRingContains(String name) {
 		AssassinNode temp = firstKillNode;
 		if (!(temp == null)) {
-			if (temp.name.toUpperCase().equals(name.toUpperCase()) {
+			if (temp.name.toUpperCase().equals(name.toUpperCase())) {
 				return true;
 			}
 			temp = temp.next;
