@@ -1,0 +1,73 @@
+Name: Jack Ambery
+Assignment: Ch 21 Written Exercises
+
+1. ListNode node3 = new ListNode("Node 3", null);
+   ListNode node2 = new ListNode("Node 2", node3);
+   ListNode node1 = new ListNode("Node 1", node2);
+   ListNode head = node1;
+   
+2. //Returns true if the list referred to by head
+   //has at least two nodes; otherwise returns false
+   public boolean hasTwo(ListNode head) {
+   		return (!(head.getNext() == null));
+   }
+   
+3. public ListNode removeFirst(ListNode head) {
+		if (head == null) {
+			throw new NoSuchElementException();
+		}
+		
+		ListNode temp = head.getNext();
+		head.setNext(null);
+		return temp;
+   }
+   
+4a. public int size(LineNode head) {
+		int size = 0;
+		for (int i = 0; head != null; i++) {
+			size++;
+			head = head.getNext();
+		} 
+		return size;
+	}
+
+4b. public int size(ListNode head) {
+		if (head == null) {
+			return 0;
+		}
+		return 1 + size(head.getNext());
+	}
+	
+5. public ListNode add(ListNode head, Object value) {
+		ListNode temp = head;
+		if (head == null) {
+			head = new ListNode(value, null);
+		}
+		else {
+			while (head.getNext() != null) {
+				head = head.getNext();
+			}
+			head.getNext() = new ListNode(value, null);
+		}
+		return temp;
+   }
+   
+6. **public ListNode reverseList(ListNode head) { 
+		ListNode newHead = null;
+		newHead = head;
+		for (int i = 0; head != null; i++) {
+			newHead = head.getnext();
+		}
+		return newHead;
+   }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
