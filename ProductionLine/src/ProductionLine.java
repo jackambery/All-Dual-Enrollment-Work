@@ -6,12 +6,12 @@ public class ProductionLine {
 	
 	private Queue<Disk> input;
 	private Queue<Tower> output;
-	private Stack<Disk> robotArm;
+	private Tower robotArm;
 	
 	public ProductionLine() {
 		input = new LinkedList<Disk>();
 		output = new LinkedList<Tower>();
-		robotArm = new Stack<Disk>();
+		robotArm = new Tower();
 	}
 	
 	public void addDisk(Disk disk) {
@@ -20,12 +20,25 @@ public class ProductionLine {
 	
 	public void unloadRobot() {
 		Tower pyramid = new Tower(); //type Stack
-		while (robotArm.size() > 0) {
-			pyramid.addDisk(robotArm.pop());
+		while (!robotArm.isEmpty()) {
+			pyramid.push(robotArm.pop());
 		}
 		output.add(pyramid);
 	}
 	
+	public void process() {
+		while (!input.isEmpty()) {
+			if (input.peek().compareTo(robotArm.peek()) > 0) {
+				robotArm.push(input.remove());
+			}
+			else {
+				unloadRobot();
+				robotArm.push(input.remove());
+			}
+		}
+	}
+	
+	public Tower remove
 	
 	//**********Main Method************
 	public static void main(String[] args) {

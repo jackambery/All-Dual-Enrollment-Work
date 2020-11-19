@@ -3,17 +3,28 @@ import java.util.Stack;
 public class Tower {
 	
 	private Stack<Disk> tower;
-	private int size;
 	
 	public Tower() {
 		this.tower = new Stack<Disk>();
-		size = 0;
 	}
 	
-	//just use push() instead of addDisk()
-	public void addDisk(Disk disk) {
+	public void push(Disk disk) {
 		tower.push(disk);
-		size++;
+	}
+	
+	public Disk pop() {
+		return tower.pop();
+	}
+	
+	public Disk peek() {
+		return tower.peek();
+	}
+	
+	public int size() {
+		return tower.size();
 	}
 
+	public boolean isEmpty() {
+		return tower.isEmpty();
+	}
 }
