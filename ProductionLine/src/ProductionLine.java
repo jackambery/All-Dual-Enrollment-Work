@@ -1,6 +1,9 @@
+import java.awt.Canvas;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
+
+import javax.swing.JFrame;
 
 public class ProductionLine {
 	
@@ -38,11 +41,8 @@ public class ProductionLine {
 		}
 	}
 	
-	public Tower remove
-	
-	//**********Main Method************
-	public static void main(String[] args) {
-		
+	public Tower removeTower() {
+		return output.remove();
 	}
 
 }
