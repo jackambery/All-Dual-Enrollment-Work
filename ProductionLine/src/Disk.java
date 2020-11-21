@@ -21,5 +21,9 @@ public class Disk implements Comparable<Disk> {
 	public int getRadius() {
 		return radius;
 	}
+	
+	public String toString() {
+		return "" + radius;
+	}
 
 }

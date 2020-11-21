@@ -27,4 +27,16 @@ public class Tower {
 	public boolean isEmpty() {
 		return tower.isEmpty();
 	}
+	
+	public Stack<Disk> getTower() {
+		return tower;
+	}
+	
+	public String toString() {
+		String temp = "";
+		for (Disk d : tower) {
+			temp += d.toString() + " ";
+		}
+		return temp;
+	}
 }
