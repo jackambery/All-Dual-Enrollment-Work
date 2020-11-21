@@ -1,8 +1,8 @@
 
 public class Disk implements Comparable<Disk> {
-	
+
 	private int radius;
-	
+
 	public Disk(int radius) {
 		this.radius = radius;
 	}
@@ -17,11 +17,11 @@ public class Disk implements Comparable<Disk> {
 		}
 		return -1;
 	}
-	
+
 	public int getRadius() {
 		return radius;
 	}
-	
+
 	public String toString() {
 		return "" + radius;
 	}
