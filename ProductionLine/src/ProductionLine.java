@@ -27,17 +27,29 @@ public class ProductionLine {
 
 	//input = queue      robotArm = stack   small on bottom
 	public void process() {
-		while (!input.isEmpty()) {
-			if (robotArm.isEmpty() || input.peek().compareTo(robotArm.peek()) > 0) {
-				robotArm.push(input.remove());
+		Queue<Disk> tempInput = input;
+		while (!tempInput.isEmpty()) {
+			if (robotArm.isEmpty() || tempInput.peek().compareTo(robotArm.peek()) > 0) {
+				robotArm.push(tempInput.remove());
 			}
 			else {
 				unloadRobot();
-				robotArm.push(input.remove());
+				robotArm.push(tempInput.remove());
 			}
 		}
 		unloadRobot();
 	}
+	
+//	while (!input.isEmpty()) {
+//		if (robotArm.isEmpty() || input.peek().compareTo(robotArm.peek()) > 0) {
+//			robotArm.push(input.remove());
+//		}
+//		else {
+//			unloadRobot();
+//			robotArm.push(input.remove());
+//		}
+//	}
+//	unloadRobot();
 
 	public Tower removeTower() {
 		return output.remove();
@@ -53,6 +65,10 @@ public class ProductionLine {
 
 	public Queue<Disk> getInput() {
 		return input;
+	}
+	
+	public Queue<Tower> getOutput() {
+		return output;
 	}
 
 }
