@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Stack;
 
@@ -45,14 +44,10 @@ public class Tower {
 	}
 	
 	public void drawTower(Graphics g, int xPos, int yPos) {
-		g.setColor(Color.WHITE);
-		for (Disk d : tower) {
-			d.drawDisk(g, xPos, yPos + 30);
+		Stack<Disk> tempTower = tower;
+		while (!tempTower.isEmpty()) {
+			tower.pop().drawDisk(g, xPos, yPos);
+			yPos += 30;
 		}
-//		g.fillRoundRect(xPos, yPos, 100 + radius * 20, 30, 50, 50);
-//		g.setColor(Color.BLACK);
-//		g.setFont(new Font("Monospaced", Font.PLAIN, 20));
-//		g.drawString("" + radius, (170 + radius * 20)/2, yPos + 20);
-//		g.setColor(Color.ORANGE);
 	}
 }

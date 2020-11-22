@@ -16,6 +16,13 @@ public class ProductionLine {
 	public void addDisk(Disk disk) {
 		input.add(disk);
 	}
+	
+	public void addAllDisks(String str) {
+		String[] disks = str.split("[ \\-.;:,!?]");
+		for (String s : disks) {
+			addDisk(new Disk((int)Integer.parseInt(s)));
+		}
+	}
 
 	public void unloadRobot() {
 		Tower pyramid = new Tower(); //type Stack
@@ -39,25 +46,15 @@ public class ProductionLine {
 		}
 		unloadRobot();
 	}
-	
-//	while (!input.isEmpty()) {
-//		if (robotArm.isEmpty() || input.peek().compareTo(robotArm.peek()) > 0) {
-//			robotArm.push(input.remove());
-//		}
-//		else {
-//			unloadRobot();
-//			robotArm.push(input.remove());
-//		}
-//	}
-//	unloadRobot();
 
 	public Tower removeTower() {
 		return output.remove();
 	}
 
 	public void printOutput() {
-		for (Tower t: output) {
-			System.out.print("Tower: " + t.toString());
+		Queue<Tower> tempOutput = output;
+		while (!tempOutput.isEmpty()) {
+			System.out.print("Tower: " + tempOutput.remove().toString());
 			System.out.println();
 		}
 

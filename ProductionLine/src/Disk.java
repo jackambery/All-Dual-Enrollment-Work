@@ -31,7 +31,7 @@ public class Disk implements Comparable<Disk> {
 	}
 	
 	public void drawDisk(Graphics g, int xPos, int yPos) {
-		g.setColor(Color.ORANGE); 
+		g.setColor(Color.ORANGE);
 		g.fillRoundRect(xPos, yPos, 100 + radius * 20, DISK_HEIGHT, 50, 50);
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("Monospaced", Font.PLAIN, 20));

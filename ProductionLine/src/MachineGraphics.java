@@ -1,4 +1,8 @@
 import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import javax.swing.*;
 
 public class MachineGraphics extends JPanel {
@@ -6,22 +10,21 @@ public class MachineGraphics extends JPanel {
 	private static final long serialVersionUID = -7181755070117321560L;
 	private final int PANEL_WIDTH = 800;
 	private final int PANEL_HEIGHT = 600;
-	private ProductionLine p;
+	private static ProductionLine p;
 
-	public MachineGraphics() {
+	public MachineGraphics() throws FileNotFoundException {
 		JFrame window = createFrame();
 		createPanel();
-		window.add(this);  // Because the class extends JPanel, this is a JPanel ... so, what is being added to the frame is the jpanel
-		window.setVisible(true);
+		window.add(this);
 		p = new ProductionLine();
-		p.addDisk(new Disk(1));
-		p.addDisk(new Disk(2));
-		p.addDisk(new Disk(3));
-		p.addDisk(new Disk(4));
-		p.addDisk(new Disk(5));
-		p.addDisk(new Disk(3));
-		p.addDisk(new Disk(5));
-		p.addDisk(new Disk(5));
+//		p.addDisk(new Disk(1));
+//		p.addDisk(new Disk(2));
+//		p.addDisk(new Disk(3));
+//		p.addDisk(new Disk(4));
+//		p.addDisk(new Disk(5));
+//		p.addDisk(new Disk(3));
+//		p.addDisk(new Disk(5));
+//		p.addDisk(new Disk(5));
 		
 	}
 
@@ -56,16 +59,24 @@ public class MachineGraphics extends JPanel {
 		//disks
 		int xPos = 50;
 		int yPos = 600 - ((p.getInput().size() + 1) * 40); //40 = DISK_HEIGHT(30) + distance between disks(10)
-		for (Disk d : p.getInput()) {
-			d.drawDisk(g, xPos, yPos);
+		java.util.Queue<Disk> tempInput = p.getInput(); 
+		while (!tempInput.isEmpty()) {
+			tempInput.remove().drawDisk(g, xPos, yPos);
 			yPos += 40;
 		}
 		
-		//towers
-		//p.process();
-		p.printOutput();
-		//p.getOutput().element().drawTower(g, 300, 300);
-
+		//towers		
+		p.process();
+		//p.printOutput();
+		int xPos1 = 50;
+		int yPos1 = 50;
+		java.util.Queue<Tower> tempOutput = p.getOutput();
+		while (!tempOutput.isEmpty()) {
+			tempOutput.remove().drawTower(g, 300, 300);
+			xPos1 += 50;
+			yPos1 += 50;
+		}
+		
 		// Printing texts
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Monospaced", Font.PLAIN, 14));
@@ -73,9 +84,23 @@ public class MachineGraphics extends JPanel {
 		g.drawString("Robot", 375, 450);
 	}
 
-	public static void main (String[] args) {
+	public static void main (String[] args) throws FileNotFoundException {
+		
+		System.out.println("What is the input filename?");
+		Scanner user = new Scanner(System.in);
+		String filename = user.nextLine();
+		
+		File inputFile = new File(filename);
+		Scanner inputScanner = new Scanner(inputFile);
+		while (inputScanner.hasNextLine()) {
+			p.addAllDisks(inputScanner.nextLine());
+		}
+		
 		MachineGraphics window = new MachineGraphics();
 		window.repaint();
+		
+		inputScanner.close();
+		user.close();
 	}
 
 }
