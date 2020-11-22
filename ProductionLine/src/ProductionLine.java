@@ -17,12 +17,12 @@ public class ProductionLine {
 		input.add(disk);
 	}
 	
-	public void addAllDisks(String str) {
-		String[] disks = str.split("[ \\-.;:,!?]");
-		for (String s : disks) {
-			addDisk(new Disk((int)Integer.parseInt(s)));
-		}
-	}
+//	public void addAllDisks(String str) {
+//		String[] disks = str.split("[ \\-.;:,!?]");
+//		for (String s : disks) {
+//			addDisk(new Disk(Integer.parseInt(s)));
+//		}
+//	}
 
 	public void unloadRobot() {
 		Tower pyramid = new Tower(); //type Stack

@@ -87,20 +87,25 @@ public class MachineGraphics extends JPanel {
 	public static void main (String[] args) throws FileNotFoundException {
 		
 		System.out.println("What is the input filename?");
-		Scanner user = new Scanner(System.in);
-		String filename = user.nextLine();
+		Scanner kb = new Scanner(System.in);
+		String filename = kb.nextLine();
 		
 		File inputFile = new File(filename);
 		Scanner inputScanner = new Scanner(inputFile);
 		while (inputScanner.hasNextLine()) {
-			p.addAllDisks(inputScanner.nextLine());
+			String str = inputScanner.nextLine();
+			String[] disks = str.split("[ \\-.;:,!?]");
+			for (String s : disks) {
+				p.addDisk(new Disk(Integer.valueOf(s)));
+			}
+			//p.addAllDisks(inputScanner.nextLine());
 		}
 		
 		MachineGraphics window = new MachineGraphics();
 		window.repaint();
 		
 		inputScanner.close();
-		user.close();
+		kb.close();
 	}
 
 }
