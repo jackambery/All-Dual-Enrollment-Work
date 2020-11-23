@@ -5,6 +5,13 @@ import java.util.Scanner;
 
 import javax.swing.*;
 
+/**
+ * MachineGraphics is the main class that runs the program. This class draws the graphics 
+ * aspect, reads in the file, and sorts/prints the inputs and outputs.
+ * 
+ * @author Jack Ambery
+ *
+ */
 public class MachineGraphics extends JPanel {
 
 	private static final long serialVersionUID = -7181755070117321560L;
@@ -12,22 +19,33 @@ public class MachineGraphics extends JPanel {
 	private final int PANEL_HEIGHT = 600;
 	private static ProductionLine p;
 
-	public MachineGraphics() throws FileNotFoundException {
+	/**
+	 * Constructs class by instantiating ProductionLine and creates the frame
+	 * and panel for Graphics. Disks are also added to input here.
+	 * 
+	 */
+	public MachineGraphics() {
 		JFrame window = createFrame();
 		createPanel();
 		window.add(this);
 		p = new ProductionLine();
-		p.addDisk(new Disk(1));
-		p.addDisk(new Disk(2));
-		p.addDisk(new Disk(3));
-		p.addDisk(new Disk(4));
-		p.addDisk(new Disk(5));
-		p.addDisk(new Disk(3));
-		p.addDisk(new Disk(5));
-		p.addDisk(new Disk(8));
+//		p.addDisk(new Disk(1));
+//		p.addDisk(new Disk(2));
+//		p.addDisk(new Disk(3));
+//		p.addDisk(new Disk(4));
+//		p.addDisk(new Disk(5));
+//		p.addDisk(new Disk(3));
+//		p.addDisk(new Disk(5));
+//		p.addDisk(new Disk(8));
+		p.addRandomDisks();
 		
 	}
 
+	/**
+	 * Creates the frame for Graphics.
+	 * 
+	 * @return the frame to which things will be drawn to
+	 */
 	private JFrame createFrame() {
 		JFrame frame = new JFrame("Production Line Visual");
 		frame.setSize(PANEL_WIDTH, PANEL_HEIGHT);
@@ -37,10 +55,22 @@ public class MachineGraphics extends JPanel {
 		return frame; 
 	}
 
+	/**
+	 * Creates the panel in the frame to draw to
+	 * 
+	 */
 	private void createPanel() {
 		setBackground(Color.BLACK);
 	}
 
+	/**
+	 * PaintCompnent method draws all parts of the operation. Uses rectangles
+	 * and polygons to draw a machine. Iterates though input to draw all disks justified
+	 * to the bottom of the window. Also iterates though output to print all output towers
+	 * in the right area of the window. Draws strings to label items.
+	 * 
+	 * @param g Graphics object to draw various parts
+	 */
 	@Override
 	public void paintComponent(Graphics g) { 
 		super.paintComponent(g);
@@ -87,6 +117,13 @@ public class MachineGraphics extends JPanel {
 		g.drawString("Robot", 375, 450);
 	}
 
+	/**
+	 * Main method. Asks user for a filename to derrive disks from. If 
+	 * no disks are found, random ones are generated
+	 * 
+	 * @param args 
+	 * @throws FileNotFoundException if user's file is not found
+	 */
 	public static void main (String[] args) throws FileNotFoundException {
 		
 //		System.out.println("What is the input filename?");

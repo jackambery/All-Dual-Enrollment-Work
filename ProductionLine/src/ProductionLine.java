@@ -107,5 +107,16 @@ public class ProductionLine {
 	public Queue<Tower> getOutput() {
 		return output;
 	}
+	
+	/**
+	 * Adds 8 randomly sized disks to input from radiuses 1-10
+	 * 
+	 */
+	public void addRandomDisks() {
+		for (int i = 1; i <= 8; i++) {
+			int rand = (int) (Math.random() * 10) + 1;
+			addDisk(new Disk(rand));
+		}
+	}
 
 }
