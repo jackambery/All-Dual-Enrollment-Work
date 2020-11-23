@@ -17,14 +17,14 @@ public class MachineGraphics extends JPanel {
 		createPanel();
 		window.add(this);
 		p = new ProductionLine();
-//		p.addDisk(new Disk(1));
-//		p.addDisk(new Disk(2));
-//		p.addDisk(new Disk(3));
-//		p.addDisk(new Disk(4));
-//		p.addDisk(new Disk(5));
-//		p.addDisk(new Disk(3));
-//		p.addDisk(new Disk(5));
-//		p.addDisk(new Disk(5));
+		p.addDisk(new Disk(1));
+		p.addDisk(new Disk(2));
+		p.addDisk(new Disk(3));
+		p.addDisk(new Disk(4));
+		p.addDisk(new Disk(5));
+		p.addDisk(new Disk(3));
+		p.addDisk(new Disk(5));
+		p.addDisk(new Disk(8));
 		
 	}
 
@@ -59,6 +59,8 @@ public class MachineGraphics extends JPanel {
 		//disks
 		int xPos = 50;
 		int yPos = 600 - ((p.getInput().size() + 1) * 40); //40 = DISK_HEIGHT(30) + distance between disks(10)
+		g.setColor(Color.WHITE);
+		g.drawString("Top of input queue", 50, yPos - 30);
 		java.util.Queue<Disk> tempInput = p.getInput(); 
 		while (!tempInput.isEmpty()) {
 			tempInput.remove().drawDisk(g, xPos, yPos);
@@ -67,7 +69,7 @@ public class MachineGraphics extends JPanel {
 		
 		//towers		
 		p.process();
-		//p.printOutput();
+		p.printOutput();
 		int xPos1 = 50;
 		int yPos1 = 50;
 		java.util.Queue<Tower> tempOutput = p.getOutput();
@@ -79,33 +81,34 @@ public class MachineGraphics extends JPanel {
 		
 		// Printing texts
 		g.setColor(Color.WHITE);
-		g.setFont(new Font("Monospaced", Font.PLAIN, 14));
+		g.setFont(new Font("Monospaced", Font.PLAIN, 20));
 		g.drawString("Input disks:", 50, 50);
+		g.setFont(new Font("Monospaced", Font.PLAIN, 14));
 		g.drawString("Robot", 375, 450);
 	}
 
 	public static void main (String[] args) throws FileNotFoundException {
 		
-		System.out.println("What is the input filename?");
-		Scanner kb = new Scanner(System.in);
-		String filename = kb.nextLine();
-		
-		File inputFile = new File(filename);
-		Scanner inputScanner = new Scanner(inputFile);
-		while (inputScanner.hasNextLine()) {
-			String str = inputScanner.nextLine();
-			String[] disks = str.split("[ \\-.;:,!?]");
-			for (String s : disks) {
-				p.addDisk(new Disk(Integer.valueOf(s)));
-			}
-			//p.addAllDisks(inputScanner.nextLine());
-		}
+//		System.out.println("What is the input filename?");
+//		Scanner kb = new Scanner(System.in);
+//		String filename = kb.nextLine();
+//		
+//		File inputFile = new File(filename);
+//		Scanner inputScanner = new Scanner(inputFile);
+//		while (inputScanner.hasNextLine()) {
+//			String str = inputScanner.nextLine();
+//			String[] disks = str.split("[ \\-.;:,!?]");
+//			for (String s : disks) {
+//				p.addDisk(new Disk(Integer.valueOf(s)));
+//			}
+//			//p.addAllDisks(inputScanner.nextLine());
+//		}
 		
 		MachineGraphics window = new MachineGraphics();
 		window.repaint();
 		
-		inputScanner.close();
-		kb.close();
+//		inputScanner.close();
+//		kb.close();
 	}
 
 }

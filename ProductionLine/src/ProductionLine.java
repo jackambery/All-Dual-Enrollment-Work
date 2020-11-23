@@ -7,12 +7,22 @@ public class ProductionLine {
 	private static Queue<Tower> output;
 	private Tower robotArm;
 
+	/**
+	 * Instantiates input and output as new LinkedLists of type disk
+	 * and tower and robotArm as a new Tower
+	 *  
+	 */
 	public ProductionLine() {
 		input = new LinkedList<Disk>();
 		output = new LinkedList<Tower>();
 		robotArm = new Tower();
 	}
 
+	/**
+	 * Adds disk to input queue
+	 * 
+	 * @param disk to be added to input
+	 */
 	public void addDisk(Disk disk) {
 		input.add(disk);
 	}
@@ -24,6 +34,11 @@ public class ProductionLine {
 //		}
 //	}
 
+	/**
+	 * Takes the current tower that is robotArm, flips it into a temporary 
+	 * stack, then adds that stack to output
+	 * 
+	 */
 	public void unloadRobot() {
 		Tower pyramid = new Tower(); //type Stack
 		while (!robotArm.isEmpty()) {
@@ -32,7 +47,12 @@ public class ProductionLine {
 		output.add(pyramid);
 	}
 
-	//input = queue      robotArm = stack   small on bottom
+	/**
+	 * Processes all disks in input to create towers to add to output.
+	 * Adds disks to robotArm until next disk is smaller than the previous
+	 * then unloadsRobot into output
+	 * 
+	 */
 	public void process() {
 		Queue<Disk> tempInput = input;
 		while (!tempInput.isEmpty()) {
@@ -47,10 +67,20 @@ public class ProductionLine {
 		unloadRobot();
 	}
 
+	/**
+	 * Returns and removes tower from output queue
+	 * 
+	 * @return tower from output queue
+	 */
 	public Tower removeTower() {
 		return output.remove();
 	}
-
+	
+	/**
+	 * Method created to test code before starting graphics but is effectively
+	 * a toString method. Prints each tower in output to its own line
+	 *  
+	 */
 	public void printOutput() {
 		Queue<Tower> tempOutput = output;
 		while (!tempOutput.isEmpty()) {
@@ -60,10 +90,20 @@ public class ProductionLine {
 
 	}
 
+	/**
+	 * Allows access of input by other classes
+	 * 
+	 * @return the input queue of disks
+	 */
 	public Queue<Disk> getInput() {
 		return input;
 	}
 	
+	/**
+	 * Allows access of output by other classes
+	 * 
+	 * @return the output queue of towers
+	 */
 	public Queue<Tower> getOutput() {
 		return output;
 	}
