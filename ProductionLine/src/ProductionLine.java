@@ -26,13 +26,6 @@ public class ProductionLine {
 	public void addDisk(Disk disk) {
 		input.add(disk);
 	}
-	
-//	public void addAllDisks(String str) {
-//		String[] disks = str.split("[ \\-.;:,!?]");
-//		for (String s : disks) {
-//			addDisk(new Disk(Integer.parseInt(s)));
-//		}
-//	}
 
 	/**
 	 * Takes the current tower that is robotArm, flips it into a temporary 
