@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Knapsack {
@@ -8,7 +9,7 @@ public class Knapsack {
 	//fields
 	private int[] w;
 	private int n;
-	private ArrayList<Integer> list;
+	private List<Integer> list;
 	private int limit;
 	
 	public static int max(int i, int k) {
@@ -28,17 +29,56 @@ public class Knapsack {
 			return 0;
 		}
 		if (w[n] >= limit) {
-			total1 = knapsackSum(w, n--, limit);
+			total1 = knapsackSum(w, n - 1, limit);
 		}
 		else {
 			total1 = 0;
 		}
-		if (w[n] < limit) {
-			total2 = knapsackSum(w, n--, limit - w[n]) + w[n];
+		if (w[n] <= limit) {
+			total2 = knapsackSum(w, n - 1, limit - w[n]) + w[n];
 		}
 		else {
 			total2 = 0;
 		}
+		return max(total1, total2);
+	}
+	
+	public static int knapsackSum(int[] w, int n, int limit, List<Integer> list) {
+		int total1 = 0;
+		int total2 = 0;
+		int i = 0;
+		List<Integer> listA = new ArrayList<Integer>();
+		List<Integer> listB = new ArrayList<Integer>();
+		while (i < w.length) {
+			if (n < 0 || limit == 0) {
+				return 0;
+			}
+			if (w[i] >= limit) {
+				listA.add(w[i]);
+				total1 = knapsackSum(w, n - 1, limit, list);
+			}
+			else {
+				listA.clear();
+				total1 = 0;
+			}
+			if (w[i] <= limit) {
+				listB.add(w[i]);
+				total2 = knapsackSum(w, n - 1, limit - w[i], list) + w[i];
+			}
+			else {
+				listB.clear();
+				total2 = 0;
+			}
+			i++;
+		}
+		
+		if (max(total1, total2) == total1) {
+			list.addAll(listA);
+		}
+		else if (max(total1, total2) == total2){
+			list.addAll(listB);
+		}
+		
 		return max(total1, total2);
 	}
 	
@@ -67,9 +107,11 @@ public class Knapsack {
 				
 			}
 		}
-		int[] testArray = {2, 17, 5, 3};
-		System.out.println("TESTTESTTEST");
-		System.out.println(Integer.toString(knapsackSum(testArray, 3, 6)));
+		int[] testArray = {67, 17, 5, 3, 24};
+		List<Integer> testList = new ArrayList<Integer>();
+		System.out.println(Integer.toString(knapsackSum(testArray, testArray.length - 1, 26, testList)));
+		System.out.println(testList);
+
 		
 	}
 
