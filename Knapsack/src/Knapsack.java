@@ -7,11 +7,12 @@ import java.util.Scanner;
 public class Knapsack {
 	
 	//fields
-	private int[] w;
-	private int n;
-	private List<Integer> list;
-	private int limit;
+	//private static int[] w;
+	private static int n = w.length;
+	private static int limit;
 	
+	private static List<Integer> list;
+
 	public static int max(int i, int k) {
 		if (i > k) {
 			return i;
@@ -22,61 +23,92 @@ public class Knapsack {
 	//w is all melons
 	//n is number of melons allowed
 	//limit is max weight allowed
+//	public static int knapsackSum(int[] w, int n, int limit) {
+//		int total1 = 0;
+//		int total2 = 0;
+//		if (n < 0 || limit == 0) {
+//			return 0;
+//		}
+//		if (w[n] >= limit) {
+//			total1 = knapsackSum(w, n - 1, limit);
+//		}
+//		else {
+//			total1 = 0;
+//		}
+//		if (w[n] <= limit) {
+//			total2 = knapsackSum(w, n - 1, limit - w[n]) + w[n];
+//		}
+//		else {
+//			total2 = 0;
+//		}
+//		return max(total1, total2);
+//	}
+	
+//	public static int knapsackSum(int[] w, int n, int limit, List<Integer> list) {
+//		int total1 = 0;
+//		int total2 = 0;
+//		int i = 0;
+//		List<Integer> listA = new ArrayList<Integer>();
+//		List<Integer> listB = new ArrayList<Integer>();
+//		while (i < w.length) {
+//			if (n < 0 || limit == 0) {
+//				return 0;
+//			}
+//			if (w[i] >= limit) {
+//				listA.add(w[i]);
+//				total1 = knapsackSum(w, n - 1, limit, list);
+//			}
+//			else {
+//				listA.clear();
+//				total1 = 0;
+//			}
+//			if (w[i] <= limit) {
+//				listB.add(w[i]);
+//				total2 = knapsackSum(w, n - 1, limit - w[i], list) + w[i];
+//			}
+//			else {
+//				listB.clear();
+//				total2 = 0;
+//			}
+//			i++;
+//		}
+//		
+//		if (max(total1, total2) == total1) {
+//			list.addAll(listA);
+//		}
+//		else if (max(total1, total2) == total2){
+//			list.addAll(listB);
+//		}
+//		
+//		return max(total1, total2);
+//	}
+	
+	
+	//IN CLASS WAY
 	public static int knapsackSum(int[] w, int n, int limit) {
 		int total1 = 0;
 		int total2 = 0;
-		if (n < 0 || limit == 0) {
-			return 0;
-		}
-		if (w[n] >= limit) {
-			total1 = knapsackSum(w, n - 1, limit);
-		}
-		else {
-			total1 = 0;
-		}
-		if (w[n] <= limit) {
-			total2 = knapsackSum(w, n - 1, limit - w[n]) + w[n];
-		}
-		else {
-			total2 = 0;
-		}
-		return max(total1, total2);
-	}
-	
-	public static int knapsackSum(int[] w, int n, int limit, List<Integer> list) {
-		int total1 = 0;
-		int total2 = 0;
 		int i = 0;
-		List<Integer> listA = new ArrayList<Integer>();
-		List<Integer> listB = new ArrayList<Integer>();
-		while (i < w.length) {
+		n = w.length - 1;
+		while (i < n) {
 			if (n < 0 || limit == 0) {
 				return 0;
 			}
-			if (w[i] >= limit) {
-				listA.add(w[i]);
-				total1 = knapsackSum(w, n - 1, limit, list);
+			if (w[i] > limit) {
+				total1 = knapsackSum(w, n, limit - w[i]) + w[i];
+				i++;
 			}
-			else {
-				listA.clear();
-				total1 = 0;
+//			else {
+//				total1 = 0;
+//			}
+			if (w[i] < limit) {
+				total2 = knapsackSum(w, n, limit - w[i + 1]) + w[i + 1];
+				i++;
 			}
-			if (w[i] <= limit) {
-				listB.add(w[i]);
-				total2 = knapsackSum(w, n - 1, limit - w[i], list) + w[i];
-			}
-			else {
-				listB.clear();
-				total2 = 0;
-			}
-			i++;
-		}
-		
-		if (max(total1, total2) == total1) {
-			list.addAll(listA);
-		}
-		else if (max(total1, total2) == total2){
-			list.addAll(listB);
+//			else {
+//				total2 = 0;
+//			}
+			//i++;
 		}
 		
 		return max(total1, total2);
@@ -107,10 +139,11 @@ public class Knapsack {
 				
 			}
 		}
-		int[] testArray = {67, 17, 5, 3, 24};
-		List<Integer> testList = new ArrayList<Integer>();
-		System.out.println(Integer.toString(knapsackSum(testArray, testArray.length - 1, 26, testList)));
-		System.out.println(testList);
+		int[] w = {28, 3, 4, 6, 1};
+		limit = 28;
+		list = new ArrayList<Integer>();
+		System.out.println(Integer.toString(knapsackSum(w, n, limit)));
+		System.out.println(list);
 
 		
 	}
