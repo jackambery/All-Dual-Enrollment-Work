@@ -1,0 +1,127 @@
+watermelonTest01.txt	132	[2, 17, 5, 3]
+
+2 pound watermelon
+2 pound watermelon
+2 pound watermelon
+2 pound watermelon
+
+watermelonTest02.txt	10	[]
+
+No possible watermelons
+
+watermelonTest03.txt	100	[67, 53, 54, 82, 89, 57, 38, 62, 66, 48]
+
+67 pound watermelon
+67 pound watermelon
+
+watermelonTest04.txt	4854	[36, 32, 95, 67, 37, 91, 56, 38, 33, 78, 16, 57, 10, 18, 5, 22, 74, 88, 88, 95, 28, 56, 21, 68, 68, 9, 79, 65, 85, 27, 29, 7, 82, 80, 74, 95, 69, 24, 49, 78, 91, 1, 1, 29, 31, 60, 47, 58, 2, 23, 81, 90, 46, 57, 40, 18, 78, 17, 66, 69, 41, 66, 25, 88, 38, 32, 24, 56, 99, 93, 42, 92, 72, 52, 89, 1, 85, 36, 22, 50, 2, 55, 59, 44, 98, 38, 63, 22, 6, 38, 39, 82, 1, 97, 12, 100, 44, 51, 15, 21]
+
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+36 pound watermelon
+
+watermelonTest05.txt	4	[1, 5, 6, 3, 8, 19]
+
+1 pound watermelon
+1 pound watermelon
+
+watermelonTest06.txt	2	[6, 56, 78, 6, 32, 3, 111]
+
+No possible watermelons
+
+**ERROR**
+The file: "fakefile.txt" was not found.
