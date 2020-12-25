@@ -3,7 +3,6 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class Knapsack {
@@ -189,6 +188,7 @@ public class Knapsack {
 		} 
 		catch (FileNotFoundException e) {
 			System.out.println("The file containing tests was not found.");
+			System.out.println("Please enter a file containing tests.");
 		}
 
 	}
