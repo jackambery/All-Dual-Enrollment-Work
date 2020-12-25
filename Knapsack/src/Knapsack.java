@@ -5,6 +5,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * This class finds the optimal combination of watermelon weights to fill
+ * a knapsack. Can keep track of the melons used or not.
+ * 
+ * @author Jack Ambery
+ *
+ */
 public class Knapsack {
 
 	/**
