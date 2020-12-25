@@ -67,8 +67,8 @@ public class Knapsack {
 		int total1 = 0;
 		int total2 = 0;
 		int i = 0;
-		List<Integer> listA = new ArrayList<Integer>();
-		List<Integer> listB = new ArrayList<Integer>();
+		ArrayList<Integer> listA = new ArrayList<Integer>();
+		ArrayList<Integer> listB = new ArrayList<Integer>();
 		if (n < 0 || limit == 0) {
 			return 0;
 		}
@@ -136,6 +136,10 @@ public class Knapsack {
 					
 					while(inputScanner.hasNextLine()) {
 						nums.add(Integer.parseInt(inputScanner.nextLine()));
+					}
+					if (nums.isEmpty()) {
+						p.println("No limit or weights given in \"" + s + "\".");
+						break;
 					}
 					
 					//sets w, limit, and n

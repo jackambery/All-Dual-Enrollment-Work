@@ -123,5 +123,4 @@ watermelonTest06.txt	2	[6, 56, 78, 6, 32, 3, 111]
 
 No possible watermelons
 
-**ERROR**
-The file: "fakefile.txt" was not found.
+No limit or weights given in "watermelonTest07.txt".
