@@ -97,7 +97,7 @@ public class MorseCode
     morse.append(text); //char sequence of text word
     for (int i = 0; i < morse.length(); i++) {
     	char c = morse.charAt(i);
-    	
+    	//this is where I left off
     	
     }
 	morse.delete(0,  400); //clears string buffer
