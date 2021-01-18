@@ -146,6 +146,14 @@ public class MyTreeSet
 	  while(right.getLeft() != null) {
 		  right = right.getLeft();
 	  }
+	  
+	  TreeNode rightChild = right.getRight();
+	  while (rightChild.getRight() != null) {
+		  TreeNode temp = rightChild.getRight();
+		  temp = rightChild;
+	  }
+	  
+	  return temp;
   }
 
   // Returns a string representation of the tree rooted at node.
