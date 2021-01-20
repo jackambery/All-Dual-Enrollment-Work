@@ -126,13 +126,5 @@ public class ExpressionTree extends TreeNode implements Expressions {
 		}
 		return Integer.parseInt((String) temp.pop());
 	}
-	
-	public static void main(String[] args) {
-		String[] exp = {"3", "10", "5", "+", "*"};
-		//String[] exp = {"3", "10", "*"};
-		ExpressionTree tree = buildTree(exp);
-		System.out.println(tree.toPostfixNotation());
-	}
-
 
 }
