@@ -13,44 +13,47 @@ public class ExpressionTree extends TreeNode implements Expressions {
 	
 	//methods
 	public static ExpressionTree buildTree(String[] exp) {
-		Stack<Object> temp = new Stack<Object>();
+		Stack<ExpressionTree> stack = new Stack<ExpressionTree>();
 		for (int i = 0; i < exp.length; i++) {
+			
 			if (exp[i] != "+" && exp[i] != "*") {
-				temp.push(exp[i]);
+				stack.push(new ExpressionTree(exp[i]));
 			}
 			else if (exp[i] == "+") {
-				TreeNode tempNode = new TreeNode(exp[i]);
-				tempNode.setRight(new TreeNode(temp.pop()));
-				tempNode.setLeft(new TreeNode(temp.pop()));
+				ExpressionTree tree = new ExpressionTree(exp[i]);
+				tree.setRight(stack.pop());
+				tree.setLeft(stack.pop());
 				
-				temp.push(tempNode);
+				stack.push(tree);
 			}
 			else if (exp[i] == "*") {
-				TreeNode tempNode = new TreeNode(exp[i]);
-				tempNode.setRight(new TreeNode(temp.pop()));
-				tempNode.setLeft(new TreeNode(temp.pop()));
+				ExpressionTree tree = new ExpressionTree(exp[i]);
+				tree.setRight(stack.pop());
+				tree.setLeft(stack.pop());
 				
-				temp.push(tempNode);
+				stack.push(tree);
 			}
 		}
-		return new ExpressionTree(temp.pop());
+		return stack.pop();
+		
 	}
 
 	//@Override
 	public int evalTree() {
-		if (this.getLeft() == null && this.getRight() == null) {
-			return this.getValue();
+		if (this.getValue() != null) {
+			if (this.getLeft() == null && this.getRight() == null) {
+				return Integer.parseInt((String) this.getValue());
+			}
+			int left = new ExpressionTree(this.getLeft().getValue()).evalTree();
+			int right = new ExpressionTree(this.getRight().getValue()).evalTree();
+
+			if (this.getValue().equals("+")) {
+				return left + right;
+			}
+			if (this.getValue().equals("*")) {
+				return left * right;
+			}
 		}
-		int left = new ExpressionTree(this.getLeft()).evalTree();
-		int right = new ExpressionTree(this.getRight()).evalTree();
-		
-		if (this.getValue() == "+") {
-			return left + right;
-		}
-		if (this.getValue() == "*") {
-			return left * right;
-		}
-		
 		return 0;
 	}
 
@@ -60,10 +63,10 @@ public class ExpressionTree extends TreeNode implements Expressions {
 		
 		notation += this.getValue();
 		if (this.getLeft() != null) {
-			notation += new ExpressionTree(this.getLeft()).toPrefixNotation();
+			notation += new ExpressionTree(this.getLeft().getValue()).toPrefixNotation();
 		}
 		if (this.getRight() != null) {
-			notation += new ExpressionTree(this.getRight()).toPrefixNotation();
+			notation += new ExpressionTree(this.getRight().getValue()).toPrefixNotation();
 		}
 		return notation;
 	}
@@ -74,11 +77,11 @@ public class ExpressionTree extends TreeNode implements Expressions {
 		
 		if (this.getLeft() != null) {
 			notation += "( ";
-			notation += new ExpressionTree(this.getLeft()).toPrefixNotation();
+			notation += new ExpressionTree(this.getLeft().getValue()).toPrefixNotation();
 		}
 		notation += this.getValue();
 		if (this.getRight() != null) {
-			notation += new ExpressionTree(this.getRight()).toPrefixNotation();
+			notation += new ExpressionTree(this.getRight().getValue()).toPrefixNotation();
 			notation += " )";
 		}
 		return notation;
@@ -89,15 +92,23 @@ public class ExpressionTree extends TreeNode implements Expressions {
 		String notation = "";
 		
 		if (this.getLeft() != null) {
-			notation += new ExpressionTree(this.getLeft()).toPrefixNotation();
+			notation += new ExpressionTree(this.getLeft().getValue()).toPostfixNotation();
 		}
 		if (this.getRight() != null) {
-			notation += new ExpressionTree(this.getRight()).toPrefixNotation();
+			notation += new ExpressionTree(this.getRight().getValue()).toPostfixNotation();
 		}
 		notation += this.getValue();
 		return notation;
 	}
 	
+	/**
+	 * This method takes in a postfix expression in the form of a String array and 
+	 * returns the solution to the expression.
+	 * 
+	 * @param exp Array of strings representing an expression in postfix notation
+	 * @return the integer answer of the given expression
+	 * WORKS
+	 */
 	public static int postfixEval(String[] exp) {
 		Stack<Object> temp = new Stack<Object>();
 		for (int i = 0; i < exp.length; i++) {
@@ -113,13 +124,14 @@ public class ExpressionTree extends TreeNode implements Expressions {
 				temp.push(String.valueOf(product));
 			}
 		}
-		return (int) temp.pop();
+		return Integer.parseInt((String) temp.pop());
 	}
 	
 	public static void main(String[] args) {
-		ExpressionTree tree = new ExpressionTree(new TreeNode("*"), new TreeNode(5), new TreeNode(4));
-		String[] arr = {"*", "6", "7"};
-		System.out.println(postfixEval(arr));
+		String[] exp = {"3", "10", "5", "+", "*"};
+		//String[] exp = {"3", "10", "*"};
+		ExpressionTree tree = buildTree(exp);
+		System.out.println(tree.toPostfixNotation());
 	}
 
 
