@@ -1,0 +1,363 @@
+Expression: 8 4 +
+
+Tree Value (evalTree): 12
+
+Prefix notation: +84
+Infix notation: (8+4)
+Postfix notation: 84+
+
+Postfix String Array Evaluation (postFixEval): 12
+
+
+Expression: 8 6 *
+
+Tree Value (evalTree): 48
+
+Prefix notation: *86
+Infix notation: (8*6)
+Postfix notation: 86*
+
+Postfix String Array Evaluation (postFixEval): 48
+
+
+Expression: 8 4 6 * +
+
+Tree Value (evalTree): 32
+
+Prefix notation: +8*46
+Infix notation: (8+(4*6))
+Postfix notation: 846*+
+
+Postfix String Array Evaluation (postFixEval): 32
+
+
+Expression: 8 4 * 6 +
+
+Tree Value (evalTree): 38
+
+Prefix notation: +*846
+Infix notation: ((8*4)+6)
+Postfix notation: 84*6+
+
+Postfix String Array Evaluation (postFixEval): 38
+
+
+Expression: 8 4 6 7 * + *
+
+Tree Value (evalTree): 368
+
+Prefix notation: *8+4*67
+Infix notation: (8*(4+(6*7)))
+Postfix notation: 8467*+*
+
+Postfix String Array Evaluation (postFixEval): 368
+
+
+Expression: 8 4 6 * 7 + *
+
+Tree Value (evalTree): 248
+
+Prefix notation: *8+*467
+Infix notation: (8*((4*6)+7))
+Postfix notation: 846*7+*
+
+Postfix String Array Evaluation (postFixEval): 248
+
+
+Expression: 8 4 6 * + 7 *
+
+Tree Value (evalTree): 224
+
+Prefix notation: *+8*467
+Infix notation: ((8+(4*6))*7)
+Postfix notation: 846*+7*
+
+Postfix String Array Evaluation (postFixEval): 224
+
+
+Expression: 8 4 * 6 7 + *
+
+Tree Value (evalTree): 416
+
+Prefix notation: **84+67
+Infix notation: ((8*4)*(6+7))
+Postfix notation: 84*67+*
+
+Postfix String Array Evaluation (postFixEval): 416
+
+
+Expression: 8 4 * 6 + 7 *
+
+Tree Value (evalTree): 266
+
+Prefix notation: *+*8467
+Infix notation: (((8*4)+6)*7)
+Postfix notation: 84*6+7*
+
+Postfix String Array Evaluation (postFixEval): 266
+
+
+Expression: 8 4 6 7 3 * + * +
+
+Tree Value (evalTree): 116
+
+Prefix notation: +8*4+6*73
+Infix notation: (8+(4*(6+(7*3))))
+Postfix notation: 84673*+*+
+
+Postfix String Array Evaluation (postFixEval): 116
+
+
+Expression: 8 4 6 7 * 3 + * +
+
+Tree Value (evalTree): 188
+
+Prefix notation: +8*4+*673
+Infix notation: (8+(4*((6*7)+3)))
+Postfix notation: 8467*3+*+
+
+Postfix String Array Evaluation (postFixEval): 188
+
+
+Expression: 8 4 6 7 * + 3 * +
+
+Tree Value (evalTree): 146
+
+Prefix notation: +8*+4*673
+Infix notation: (8+((4+(6*7))*3))
+Postfix notation: 8467*+3*+
+
+Postfix String Array Evaluation (postFixEval): 146
+
+
+Expression: 8 4 6 7 * + * 3 +
+
+Tree Value (evalTree): 371
+
+Prefix notation: +*8+4*673
+Infix notation: ((8*(4+(6*7)))+3)
+Postfix notation: 8467*+*3+
+
+Postfix String Array Evaluation (postFixEval): 371
+
+
+Expression: 8 4 6 * 7 3 + * +
+
+Tree Value (evalTree): 248
+
+Prefix notation: +8**46+73
+Infix notation: (8+((4*6)*(7+3)))
+Postfix notation: 846*73+*+
+
+Postfix String Array Evaluation (postFixEval): 248
+
+
+Expression: 8 4 6 * 7 + 3 * +
+
+Tree Value (evalTree): 101
+
+Prefix notation: +8*+*4673
+Infix notation: (8+(((4*6)+7)*3))
+Postfix notation: 846*7+3*+
+
+Postfix String Array Evaluation (postFixEval): 101
+
+
+Expression: 8 4 6 * 7 + * 3 +
+
+Tree Value (evalTree): 251
+
+Prefix notation: +*8+*4673
+Infix notation: ((8*((4*6)+7))+3)
+Postfix notation: 846*7+*3+
+
+Postfix String Array Evaluation (postFixEval): 251
+
+
+Expression: 8 4 6 * + 7 3 * +
+
+Tree Value (evalTree): 53
+
+Prefix notation: ++8*46*73
+Infix notation: ((8+(4*6))+(7*3))
+Postfix notation: 846*+73*+
+
+Postfix String Array Evaluation (postFixEval): 53
+
+
+Expression: 8 4 6 * + 7 * 3 +
+
+Tree Value (evalTree): 227
+
+Prefix notation: +*+8*4673
+Infix notation: (((8+(4*6))*7)+3)
+Postfix notation: 846*+7*3+
+
+Postfix String Array Evaluation (postFixEval): 227
+
+
+Expression: 8 4 * 6 7 3 + * +
+
+Tree Value (evalTree): 92
+
+Prefix notation: +*84*6+73
+Infix notation: ((8*4)+(6*(7+3)))
+Postfix notation: 84*673+*+
+
+Postfix String Array Evaluation (postFixEval): 92
+
+
+Expression: 8 4 * 6 7 + 3 * +
+
+Tree Value (evalTree): 71
+
+Prefix notation: +*84*+673
+Infix notation: ((8*4)+((6+7)*3))
+Postfix notation: 84*67+3*+
+
+Postfix String Array Evaluation (postFixEval): 71
+
+
+Expression: 8 4 * 6 7 + * 3 +
+
+Tree Value (evalTree): 419
+
+Prefix notation: +**84+673
+Infix notation: (((8*4)*(6+7))+3)
+Postfix notation: 84*67+*3+
+
+Postfix String Array Evaluation (postFixEval): 419
+
+
+Expression: 8 4 * 6 + 7 3 * +
+
+Tree Value (evalTree): 59
+
+Prefix notation: ++*846*73
+Infix notation: (((8*4)+6)+(7*3))
+Postfix notation: 84*6+73*+
+
+Postfix String Array Evaluation (postFixEval): 59
+
+
+Expression: 8 4 * 6 + 7 * 3 +
+
+Tree Value (evalTree): 269
+
+Prefix notation: +*+*84673
+Infix notation: ((((8*4)+6)*7)+3)
+Postfix notation: 84*6+7*3+
+
+Postfix String Array Evaluation (postFixEval): 269
+
+
+Expression: 8 4 * 6 7 3 + * +
+
+Tree Value (evalTree): 92
+
+Prefix notation: +*84*6+73
+Infix notation: ((8*4)+(6*(7+3)))
+Postfix notation: 84*673+*+
+
+Postfix String Array Evaluation (postFixEval): 92
+
+
+Expression: 8 4 * 6 7 + 3 * +
+
+Tree Value (evalTree): 71
+
+Prefix notation: +*84*+673
+Infix notation: ((8*4)+((6+7)*3))
+Postfix notation: 84*67+3*+
+
+Postfix String Array Evaluation (postFixEval): 71
+
+
+Expression: 8 4 * 6 7 + * 3 +
+
+Tree Value (evalTree): 419
+
+Prefix notation: +**84+673
+Infix notation: (((8*4)*(6+7))+3)
+Postfix notation: 84*67+*3+
+
+Postfix String Array Evaluation (postFixEval): 419
+
+
+Expression: 8 4 6 7 3 2 * + * + +
+
+Tree Value (evalTree): 90
+
+Prefix notation: +8+4*6+7*32
+Infix notation: (8+(4+(6*(7+(3*2)))))
+Postfix notation: 846732*+*++
+
+Postfix String Array Evaluation (postFixEval): 90
+
+
+Expression: 8 4 6 7 * 3 + * + 2 +
+
+Tree Value (evalTree): 190
+
+Prefix notation: ++8*4+*6732
+Infix notation: ((8+(4*((6*7)+3)))+2)
+Postfix notation: 8467*3+*+2+
+
+Postfix String Array Evaluation (postFixEval): 190
+
+
+Expression: 8 4 6 7 * + 3 2 * + +
+
+Tree Value (evalTree): 60
+
+Prefix notation: +8++4*67*32
+Infix notation: (8+((4+(6*7))+(3*2)))
+Postfix notation: 8467*+32*++
+
+Postfix String Array Evaluation (postFixEval): 60
+
+
+Expression: 8 4 6 7 * + * 3 2 + +
+
+Tree Value (evalTree): 373
+
+Prefix notation: +*8+4*67+32
+Infix notation: ((8*(4+(6*7)))+(3+2))
+Postfix notation: 8467*+*32++
+
+Postfix String Array Evaluation (postFixEval): 373
+
+
+Expression: 8 4 6 7 * + * 3 + 2 +
+
+Tree Value (evalTree): 373
+
+Prefix notation: ++*8+4*6732
+Infix notation: (((8*(4+(6*7)))+3)+2)
+Postfix notation: 8467*+*3+2+
+
+Postfix String Array Evaluation (postFixEval): 373
+
+
+Expression: 8 4 6 7 * + 3 * 2 + +
+
+Tree Value (evalTree): 148
+
+Prefix notation: +8+*+4*6732
+Infix notation: (8+(((4+(6*7))*3)+2))
+Postfix notation: 8467*+3*2++
+
+Postfix String Array Evaluation (postFixEval): 148
+
+
+Expression: 8 4 6 7 * + 3 * + 2 +
+
+Tree Value (evalTree): 148
+
+Prefix notation: ++8*+4*6732
+Infix notation: ((8+((4+(6*7))*3))+2)
+Postfix notation: 8467*+3*+2+
+
+Postfix String Array Evaluation (postFixEval): 148
+
+
