@@ -1,5 +1,12 @@
 import java.util.Stack;
 
+/**
+ * This class creates and manipulates Expression Trees to produce infix, prefix,
+ * and postfix expressions.
+ * 
+ * @author Jack Ambery
+ *
+ */
 public class ExpressionTree extends TreeNode implements Expressions {
 
 	/**

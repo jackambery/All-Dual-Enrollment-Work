@@ -1,5 +1,7 @@
 Expression: 3 10 5 + *
 
+Tree Value (evalTree): 45
+
 Prefix notation: *3+105
 Infix notation: (3*(10+5))
 Postfix notation: 3105+*
@@ -8,6 +10,8 @@ Postfix String Array Evaluation (postFixEval): 45
 
 
 Expression: 2 2 2 2 * * *
+
+Tree Value (evalTree): 16
 
 Prefix notation: *2*2*22
 Infix notation: (2*(2*(2*2)))
@@ -18,6 +22,8 @@ Postfix String Array Evaluation (postFixEval): 16
 
 Expression: 2 5 + 6 * 8 +
 
+Tree Value (evalTree): 50
+
 Prefix notation: +*+2568
 Infix notation: (((2+5)*6)+8)
 Postfix notation: 25+6*8+
@@ -26,6 +32,8 @@ Postfix String Array Evaluation (postFixEval): 50
 
 
 Expression: 8 8 5 * + 4 +
+
+Tree Value (evalTree): 52
 
 Prefix notation: ++8*854
 Infix notation: ((8+(8*5))+4)
@@ -36,6 +44,8 @@ Postfix String Array Evaluation (postFixEval): 52
 
 Expression: 3 4 +
 
+Tree Value (evalTree): 7
+
 Prefix notation: +34
 Infix notation: (3+4)
 Postfix notation: 34+
@@ -44,6 +54,8 @@ Postfix String Array Evaluation (postFixEval): 7
 
 
 Expression: 3 4 *
+
+Tree Value (evalTree): 12
 
 Prefix notation: *34
 Infix notation: (3*4)
@@ -54,6 +66,8 @@ Postfix String Array Evaluation (postFixEval): 12
 
 Expression: 7 4 3 * 1 5 + + +
 
+Tree Value (evalTree): 25
+
 Prefix notation: +7+*43+15
 Infix notation: (7+((4*3)+(1+5)))
 Postfix notation: 743*15+++
@@ -63,6 +77,8 @@ Postfix String Array Evaluation (postFixEval): 25
 
 Expression: 1 1 1 1 1 1 1 1 + + + + + + +
 
+Tree Value (evalTree): 8
+
 Prefix notation: +1+1+1+1+1+1+11
 Infix notation: (1+(1+(1+(1+(1+(1+(1+1)))))))
 Postfix notation: 11111111+++++++
@@ -71,6 +87,8 @@ Postfix String Array Evaluation (postFixEval): 8
 
 
 Expression: 2 2 * 2 * 2 *
+
+Tree Value (evalTree): 16
 
 Prefix notation: ***2222
 Infix notation: (((2*2)*2)*2)
