@@ -18,18 +18,39 @@ abstract class Board extends JFrame implements ActionListener {
 
 	private String boardString = "";
 
+	/**
+	 * Constructor that calls setupFrame, sets title.
+	 * 
+	 * @param title
+	 */
 	public Board(String title) {
 		super(title);
 		setupFrame();
 	}
 
+	/**
+	 * Sets the hashcode 
+	 * 
+	 * @param hashcode
+	 */
 	public void setHashCodeLabel(int hashcode) {
 		lblHashCode.setText("" + hashcode);
 	}
 
+	/**
+	 * Sets string label of winner
+	 *  
+	 * @param result true or false if winner or not
+	 */
 	public void setWinner(String result) {
 		lblWinTitle.setText(result);
 	}
+	
+	/**
+	 * Sets winner status
+	 * 
+	 * @param result true or false if winner or not
+	 */
 	public void setWinner(boolean result) {
 		if (result)
 			setWinner("Winner");
@@ -37,7 +58,10 @@ abstract class Board extends JFrame implements ActionListener {
 			setWinner("Loser");
 	}
 	
-	//required because of abstract method, but not used   
+	/**
+	 * This method is required because of abstract method, but not used.
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) { }
 
@@ -84,6 +108,12 @@ abstract class Board extends JFrame implements ActionListener {
 		return panel;
 	}
 
+	/**
+	 * Switches character to different character.
+	 * 
+	 * @param ch character to be switched
+	 * @return new x, o, or space
+	 */
 	private static char cycleValue(char ch) {
 		switch (ch) {
 		case 'x' : 
@@ -95,6 +125,10 @@ abstract class Board extends JFrame implements ActionListener {
 		}
 	}
 
+	/**
+	 * Makes visible and sets properties of the output graphic.
+	 * 
+	 */
 	private void setupFrame() {
 		JPanel panel2 = new JPanel();
 
@@ -112,6 +146,11 @@ abstract class Board extends JFrame implements ActionListener {
 		super.setVisible(true);  
 	}
 
+	/**
+	 * Provides a random x, o, or space
+	 * 
+	 * @return x, o, or space
+	 */
 	private char randomXO() {
 		int rnd = (int) (Math.random()*TicTacToe.CHAR_POSSIBILITIES);
 		switch(rnd) {
@@ -124,8 +163,21 @@ abstract class Board extends JFrame implements ActionListener {
 		}
 	}
 
+	/**
+	 * Produces the HashMap index for a Board. Enables the user
+	 * to find their board in the HashMap with the returned integer index.
+	 * 
+	 * @return index for HashCode array
+	 */
 	abstract int myHashCode();
 
+	/**
+	 * Returns the character at a specified position in 2d array
+	 * 
+	 * @param row row location of char
+	 * @param col column location of char
+	 * @return
+	 */
 	public char charAt(int row, int col) {
 		String value = buttons[row][col].getText();
 		if (value.length() > 0)
@@ -134,6 +186,12 @@ abstract class Board extends JFrame implements ActionListener {
 			return '*';
 	}
 
+	/**
+	 * Takes a string of numbers, converts them to x's, o's, and spaces, then
+	 * sets buttons to new x's, o's, and spaces
+	 * 
+	 * @param s String of 1's, 2's, and 0's
+	 */
 	public void show(String s) {
 		int pos = 0;
 		String letter;
@@ -148,7 +206,6 @@ abstract class Board extends JFrame implements ActionListener {
 				case '0'  : letter = " "; 
 				break;
 				default : letter = "" + ch;
-				xx: letter = " ";
 				}
 
 				buttons[r][c].setText(letter);
@@ -156,6 +213,10 @@ abstract class Board extends JFrame implements ActionListener {
 			}
 	}
 
+	/**
+	 * Sets boardString to current board values
+	 * 
+	 */
 	public void resetBoardString() {
 		for (int r = 0; r < TicTacToe.ROWS; r++)
 			for (int c = 0; c < TicTacToe.COLS; c++){
@@ -163,10 +224,27 @@ abstract class Board extends JFrame implements ActionListener {
 			}
 	}
 
+	/**
+	 * Takes a String of x's, o's, and spaces and sets them to respective numbers.
+	 * Calls show method which updates tiles.
+	 * 
+	 * @param s String of x's, o's, and spaces
+	 */
 	public void setBoardString(String s) {
 		boardString = s;
-		show(s);
+		String temp = "";
+		for (int i = 0; i < boardString.length(); i++) {
+			switch (boardString.charAt(i)) {
+				case 'x' : temp += "1"; 
+				break;
+				case 'o' : temp += "2"; 
+				break;
+				case ' '  : temp += "0"; 
+				break;
+				default : temp += "*";
+				}
+		}
+		show(temp); //a string with 1s, 2s, and 0s
 	}
-
-
+	
 }

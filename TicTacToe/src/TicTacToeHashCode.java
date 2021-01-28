@@ -2,27 +2,38 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-//TODO Make sure you remove all of the TODO comments from this file before turning itin
-
 public class TicTacToeHashCode extends Board {
 
 	private static final long serialVersionUID = 1354215189010113831L;
 	boolean [] winners;  // True if the hash string that maps to this index is a winner, false otherwise
 
-	TicTacToeHashCode(String s) throws FileNotFoundException {
+	/**
+	 * Creates boolean array of size 3^9 which has false for all non-winner indices
+	 * and true for all winners. A file of winners is taken in. 
+	 * 
+	 * @param s Title for Board graphic
+	 */
+	TicTacToeHashCode(String s) {
 		super(s);
 		File winnersFile = new File("TicTacToeWinners.txt");
-		Scanner winnersScanner = new Scanner(winnersFile);
-		while(winnersScanner.hasNextLine()) {
-			int index = Integer.parseInt(winnersScanner.nextLine());
-			winners[index] = true;
+		winners = new boolean[TicTacToe.POSSIBILITIES];
+		try {
+			Scanner winnersScanner = new Scanner(winnersFile);
+			while(winnersScanner.hasNextLine()) {
+				String line = winnersScanner.nextLine();
+				
+				setBoardString(line);
+				winners[myHashCode()] = true;
+			}
+			
+			winnersScanner.close(); 
 		}
-		winnersScanner.close();
-		// TODO Instantiate/fill winners array.  
+		catch (FileNotFoundException e) {
+			System.out.println("Winners file was not found.");
+		}
+		
 	}
 
-	// TODO - write the myHashCode function.  It must create a unique hashcode for all of the 
-	//   possible values the game board (3 ^ 9) and it MUST use the super.charAt(row, col) function
 	/**
 	 * Produces the HashMap index for this Board. Enables the user
 	 * to find their board in the HashMap with the returned integer index.
@@ -33,34 +44,48 @@ public class TicTacToeHashCode extends Board {
 	public int myHashCode() {
 		String s = "";
 
-		for (int r = 0; r < 3; r++) {
-			for (int c = 0; c < 3; c++) {
+		for (int r = 0; r < TicTacToe.ROWS; r++) {
+			for (int c = 0; c < TicTacToe.COLS; c++) {
 				switch(charAt(r, c)) {
 				case 'x':
 					s += "1";
+				break;
 				case 'o':
 					s += "2";
+				break;
 				case ' ':
 					s += "0";
+				break;
 				default:
 					s += charAt(r, c);
 				}
 			}
 		}
-		
+
 		//base 3 to base 10
 		int index = 0;
 		for (int i = 0; i < s.length(); i++) {
-			index += (Character.getNumericValue(s.charAt(i)) * Math.pow(3, s.length() - (i + 1) )); //*** this may cause errors
+			index += (Character.getNumericValue(s.charAt(i)) * Math.pow(3, s.length() - (i + 1) ));
 		}
-		
+
 		return index; //index of this board in HashMap
 	}
-	
+
+	/**
+	 * Determines if a game is a winner by checking if true in the winners array.
+	 * 
+	 * @return true if winner, false if not
+	 */
 	public boolean isWin() {
 		return winners[myHashCode()];
 	}
 
+	/**
+	 * Determines if a given x and o combination string is a winner.
+	 * 
+	 * @param s String of x's, o's and spaces
+	 * @return
+	 */
 	public boolean isWin(String s) {
 		// return the value in the winner array for the hash code of the board string sent in.
 		//**not a part of current assignment**
@@ -68,24 +93,39 @@ public class TicTacToeHashCode extends Board {
 		return winners[index];
 	}
 
-	public static void main(String[] args) throws InterruptedException, FileNotFoundException {
+	/**
+	 * Main method, updates display every 4 seconds for each line in test file.
+	 * 
+	 * @param args
+	 * @throws InterruptedException 
+	 */
+	public static void main(String[] args) throws InterruptedException {
 		TicTacToeHashCode board = new TicTacToeHashCode ("Tic Tac Toe");
-		String s = "";
-		java.util.Scanner kb = new java.util.Scanner(System.in);
 
-		while (true) {
-			s = kb.nextLine();
-			board.show(String.valueOf(board.myHashCode()));
-			board.setHashCodeLabel(board.myHashCode());
+		File testFile = new File("TTT_Tests.txt");
+		
+		String line = "";
+		try {
 			
-			//TODO Update this line to call your isWin method.
-			board.setWinner(board.isWin());
+			Scanner testScanner = new Scanner(testFile);
 			
-			TicTacToe ttt = new TicTacToe();
-			//System.out.println(ttt.isWin(s));
-			board.show(s);
-			Thread.sleep(4000); 
-			board.displayRandomString();      
+			while (testScanner.hasNextLine()) {
+				line = testScanner.nextLine();
+				board.setBoardString(line);
+				board.setHashCodeLabel(board.myHashCode());
+
+				board.setWinner(board.isWin());
+
+				TicTacToe ttt = new TicTacToe();
+				System.out.println(ttt.isWin(line));
+				Thread.sleep(4000);
+			}
+			testScanner.close();
 		}
+		catch (FileNotFoundException e) {
+			System.out.println("The input file was not found.");
+		}
+		
+			
 	}
 }
