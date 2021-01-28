@@ -11,6 +11,7 @@ import javax.swing.BoxLayout;
 
 abstract class Board extends JFrame implements ActionListener {
 
+	private static final long serialVersionUID = -3857627073176871817L;
 	private JButton buttons[][];
 	private JLabel lblHashCode;
 	private JLabel lblWinTitle;
@@ -22,7 +23,6 @@ abstract class Board extends JFrame implements ActionListener {
 		setupFrame();
 	}
 
-	// TODO renamed from setHashCode to setHashCodeLabel
 	public void setHashCodeLabel(int hashcode) {
 		lblHashCode.setText("" + hashcode);
 	}
@@ -36,7 +36,8 @@ abstract class Board extends JFrame implements ActionListener {
 		else
 			setWinner("Loser");
 	}
-	//  required because of abstract method, but not used   
+	
+	//required because of abstract method, but not used   
 	@Override
 	public void actionPerformed(ActionEvent e) { }
 
@@ -122,7 +123,7 @@ abstract class Board extends JFrame implements ActionListener {
 			return ' ';
 		}
 	}
-	
+
 	abstract int myHashCode();
 
 	public char charAt(int row, int col) {
@@ -146,14 +147,15 @@ abstract class Board extends JFrame implements ActionListener {
 				break;
 				case '0'  : letter = " "; 
 				break;
-				default : letter = "" + ch;                                                                                                                                                                                                                                                                                        xx: letter = " ";
+				default : letter = "" + ch;
+				xx: letter = " ";
 				}
 
 				buttons[r][c].setText(letter);
-				ch++;
+				pos++;
 			}
 	}
-	
+
 	public void resetBoardString() {
 		for (int r = 0; r < TicTacToe.ROWS; r++)
 			for (int c = 0; c < TicTacToe.COLS; c++){
