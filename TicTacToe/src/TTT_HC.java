@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class TicTacToeHashCode extends Board {
+public class TTT_HC extends Board {
 
 	private static final long serialVersionUID = 1354215189010113831L;
 	static boolean [] winners;  // True if the hash string that maps to this index is a winner, false otherwise
