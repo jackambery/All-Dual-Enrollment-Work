@@ -13,17 +13,19 @@ public class TTT_HC extends Board {
 	 * 
 	 * @param s Title for Board graphic
 	 */
-	TicTacToeHashCode(String s) {
+	TTT_HC(String s) {
 		super(s);
 		File winnersFile = new File("TicTacToeWinners.txt");
-		winners = new boolean[TicTacToe.POSSIBILITIES];
+		winners = new boolean[2000]; //mess with this number
 		try {
 			Scanner winnersScanner = new Scanner(winnersFile);
 			while(winnersScanner.hasNextLine()) {
 				String line = winnersScanner.nextLine();
 				
+				//This is to be changed once hash code done
+				//Sets all the winners to true in winners[]
 				setBoardString(line);
-				winners[myHashCode()] = true;
+				winners[tttHashCode()] = true;
 			}
 			
 			winnersScanner.close(); 
@@ -40,18 +42,22 @@ public class TTT_HC extends Board {
 	 * 
 	 * @return int the index of the specific board in a the HashMap
 	 */
-	@Override
-	public int myHashCode() {
-		String s = "";
-
+	public int tttHashCode() {
+		String s = ""; // 9 chars for each spot in given board
+		int xCount = 0; //num of x's
+		int oCount = 0; // num of o's
+		int index = 0; // spot in array
+		
 		for (int r = 0; r < TicTacToe.ROWS; r++) {
 			for (int c = 0; c < TicTacToe.COLS; c++) {
 				switch(charAt(r, c)) {
 				case 'x':
 					s += "1";
+					xCount++;
 				break;
 				case 'o':
 					s += "2";
+					oCount++;
 				break;
 				case ' ':
 					s += "0";
@@ -61,14 +67,39 @@ public class TTT_HC extends Board {
 				}
 			}
 		}
-
-		//base 3 to base 10
-		int index = 0;
-		for (int i = 0; i < s.length(); i++) {
-			index += (Character.getNumericValue(s.charAt(i)) * Math.pow(3, s.length() - (i + 1) ));
+		// s now equals 1122 1 2 
+		// check if board in invalid
+		// s needs at least 3 x's or at least 3 o's
+		// diff between x and o's is more than 1
+		// index = 0 if these are true
+		if (! (xCount > 2 || oCount > 2)) 
+			index = 0;
+		if (! (xCount == oCount + 1) || (oCount == xCount + 1)) 
+			index = 0;
+		
+//		if ( (xCount < 3) && (oCount < 3) ) {
+//			index = 0;
+//		}
+//		else if ( (xCount - oCount > 1) || (oCount - xCount > 1) ) {
+//			index = 0;
+//		}
+		else { 
+			//base 3 to base 10
+			for (int i = 0; i < s.length(); i++) {
+				int bigIndex = (int) (Character.getNumericValue(s.charAt(i)) * Math.pow(3, s.length() - (i + 1) ));
+				index = bigIndex / 10; //should be 1 to 1900 ish
+			}
 		}
-
+		
 		return index; //index of this board in HashMap
+	}
+	
+	/**
+	 * Only here to correctly extend Board
+	 */
+	@Override
+	public int myHashCode() {
+		return tttHashCode();
 	}
 
 	/**
@@ -77,7 +108,7 @@ public class TTT_HC extends Board {
 	 * @return true if winner, false if not
 	 */
 	public boolean isWin() {
-		return winners[myHashCode()];
+		return winners[tttHashCode()];
 	}
 
 	/**
@@ -100,7 +131,7 @@ public class TTT_HC extends Board {
 	 * @throws InterruptedException 
 	 */
 	public static void main(String[] args) throws InterruptedException {
-		TicTacToeHashCode board = new TicTacToeHashCode ("Tic Tac Toe");
+		TTT_HC board = new TTT_HC ("Tic Tac Toe with new hash function");
 
 		File testFile = new File("TTT_Tests.txt");
 		
@@ -112,13 +143,12 @@ public class TTT_HC extends Board {
 			while (testScanner.hasNextLine()) {
 				line = testScanner.nextLine();
 				board.setBoardString(line);
-				board.setHashCodeLabel(board.myHashCode());
+				board.setHashCodeLabel(board.tttHashCode());
 
 				board.setWinner(board.isWin());
 
-				TicTacToe ttt = new TicTacToe();
-				System.out.println(ttt.isWin(line));
-				Thread.sleep(4000);
+				System.out.println(board.isWin());
+				Thread.sleep(1000);
 				
 			}
 			testScanner.close();
@@ -126,8 +156,10 @@ public class TTT_HC extends Board {
 		catch (FileNotFoundException e) {
 			System.out.println("The input file was not found.");
 		}
+		
+//		//prints winners[]
 //		for(int i = 0; i < winners.length; i++) {
-//			System.out.println("" + i + winners[i]);
+//			System.out.println(i + " " + winners[i]);
 //		}
 			
 	}

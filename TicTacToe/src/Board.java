@@ -235,13 +235,17 @@ abstract class Board extends JFrame implements ActionListener {
 		String temp = "";
 		for (int i = 0; i < boardString.length(); i++) {
 			switch (boardString.charAt(i)) {
-				case 'x' : temp += "1"; 
+				case 'x': 
+					temp += "1"; 
 				break;
-				case 'o' : temp += "2"; 
+				case 'o':
+					temp += "2"; 
 				break;
-				case ' '  : temp += "0"; 
+				case ' ':
+					temp += "0"; 
 				break;
-				default : temp += "*";
+				default :
+					temp += "*";
 				}
 		}
 		show(temp); //a string with 1s, 2s, and 0s
