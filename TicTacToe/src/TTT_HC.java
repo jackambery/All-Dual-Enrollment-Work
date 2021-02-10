@@ -2,13 +2,21 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * This class creates a boolean hash array for every possible tic-tac-toe board combination.
+ * Boards with winning combinations are true, the rest are false. Extends the Board class, mainly
+ * responsible for the Graphics aspects.
+ * 
+ * @author Jack Ambery
+ *
+ */
 public class TTT_HC extends Board {
 
 	private static final long serialVersionUID = 1354215189010113831L;
-	static boolean [] winners;  // True if the hash string that maps to this index is a winner, false otherwise
+	static boolean [] winners;
 
 	/**
-	 * Creates boolean array of size 3^9 which has false for all non-winner indices
+	 * Creates boolean array of size 1968 (3^9 / 10) which has false for all non-winner and invalid boards
 	 * and true for all winners. A file of winners is taken in. 
 	 * 
 	 * @param s Title for Board graphic
@@ -16,86 +24,82 @@ public class TTT_HC extends Board {
 	TTT_HC(String s) {
 		super(s);
 		File winnersFile = new File("TicTacToeWinners.txt");
-		winners = new boolean[2000]; //mess with this number
+		winners = new boolean[TicTacToe.POSSIBILITIES / 10];
 		try {
 			Scanner winnersScanner = new Scanner(winnersFile);
 			while(winnersScanner.hasNextLine()) {
 				String line = winnersScanner.nextLine();
-				
-				//This is to be changed once hash code done
+
 				//Sets all the winners to true in winners[]
 				setBoardString(line);
 				winners[tttHashCode()] = true;
 			}
-			
+
 			winnersScanner.close(); 
 		}
 		catch (FileNotFoundException e) {
 			System.out.println("Winners file was not found.");
 		}
-		
+
 	}
 
 	/**
-	 * Produces the HashMap index for this Board. Enables the user
-	 * to find their board in the HashMap with the returned integer index.
+	 * Produces a position in an array of booleans for this Board. Enables the user
+	 * to determine whether their board is a winner or not.
 	 * 
-	 * @return int the index of the specific board in a the HashMap
+	 * How the Hash Function works:
+	 * If a board is invalid, the position is set to 0. If a board is valid, the base-3 
+	 * representation of the board is converted to base-10 then that number is divided by 10. 
+	 * This cuts down the extra space in the previous, size 19,000 array. 
+	 * 
+	 * @return integer index/position of the board configuration in the array
 	 */
 	public int tttHashCode() {
 		String s = ""; // 9 chars for each spot in given board
-		int xCount = 0; //num of x's
-		int oCount = 0; // num of o's
+		int xCount = 0; // number of x's
+		int oCount = 0; // number of o's
 		int index = 0; // spot in array
-		
+
 		for (int r = 0; r < TicTacToe.ROWS; r++) {
 			for (int c = 0; c < TicTacToe.COLS; c++) {
 				switch(charAt(r, c)) {
 				case 'x':
 					s += "1";
 					xCount++;
-				break;
+					break;
 				case 'o':
 					s += "2";
 					oCount++;
-				break;
+					break;
 				case ' ':
 					s += "0";
-				break;
+					break;
 				default:
 					s += charAt(r, c);
 				}
 			}
 		}
-		// s now equals 1122 1 2 
+ 
 		// check if board in invalid
-		// s needs at least 3 x's or at least 3 o's
-		// diff between x and o's is more than 1
-		// index = 0 if these are true
-		if (! (xCount > 2 || oCount > 2)) 
-			index = 0;
-		if (! (xCount == oCount + 1) || (oCount == xCount + 1)) 
-			index = 0;
+		if (! (xCount > 2 || oCount > 2))
+			return 0;
+		if (! ((xCount == oCount + 1) || (oCount == xCount + 1)))
+			return 0;
 		
-//		if ( (xCount < 3) && (oCount < 3) ) {
-//			index = 0;
-//		}
-//		else if ( (xCount - oCount > 1) || (oCount - xCount > 1) ) {
-//			index = 0;
-//		}
-		else { 
-			//base 3 to base 10
-			for (int i = 0; i < s.length(); i++) {
-				int bigIndex = (int) (Character.getNumericValue(s.charAt(i)) * Math.pow(3, s.length() - (i + 1) ));
-				index = bigIndex / 10; //should be 1 to 1900 ish
+		//base 3 to base 10
+		for (int i = 0; i < s.length(); i++) {
+			if (s.charAt(i) != ' ') {
+				index += ( Character.getNumericValue(s.charAt(i)) * Math.pow(3, s.length() - (i + 1)) );
 			}
 		}
 		
-		return index; //index of this board in HashMap
+		return index / 10; //index of this board in the array
 	}
-	
+
 	/**
-	 * Only here to correctly extend Board
+	 * (Only here to correctly extend Board) References tttHashCode method to determine position.
+	 * 
+	 * @return integer position in winners array
 	 */
 	@Override
 	public int myHashCode() {
@@ -134,12 +138,12 @@ public class TTT_HC extends Board {
 		TTT_HC board = new TTT_HC ("Tic Tac Toe with new hash function");
 
 		File testFile = new File("TTT_Tests.txt");
-		
+
 		String line = "";
 		try {
-			
+
 			Scanner testScanner = new Scanner(testFile);
-			
+
 			while (testScanner.hasNextLine()) {
 				line = testScanner.nextLine();
 				board.setBoardString(line);
@@ -148,19 +152,47 @@ public class TTT_HC extends Board {
 				board.setWinner(board.isWin());
 
 				System.out.println(board.isWin());
-				Thread.sleep(1000);
-				
+				Thread.sleep(200);
+
 			}
 			testScanner.close();
 		}
 		catch (FileNotFoundException e) {
 			System.out.println("The input file was not found.");
 		}
+
+		//prints winners[]
+		double trueCount = 0;
+		for(int i = 0; i < winners.length; i++) {
+			if (winners[i] == true) {
+				trueCount++;
+			}
+		}
+		double loadfactor = trueCount / (TicTacToe.POSSIBILITIES / 10);
+		System.out.println("Load factor = " + trueCount + " / 1968 = " + loadfactor);
 		
-//		//prints winners[]
-//		for(int i = 0; i < winners.length; i++) {
-//			System.out.println(i + " " + winners[i]);
-//		}
-			
+		int q1 = 0;
+		int q2 = 0;
+		int q3 = 0;
+		int q4 = 0;
+		for(int i = 0; i < winners.length / 4; i++) {
+			if (winners[i] == true) {
+				q1++;
+			}
+		}for(int i = winners.length / 4; i < winners.length / 2; i++) {
+			if (winners[i] == true) {
+				q2++;
+			}
+		}for(int i = winners.length / 2; i < winners.length - (winners.length / 4); i++) {
+			if (winners[i] == true) {
+				q3++;
+			}
+		}for(int i = winners.length - (winners.length / 4); i < winners.length; i++) {
+			if (winners[i] == true) {
+				q4++;
+			}
+		}
+		System.out.println("Distribution in each quarter: " + q1 + ", " + q2 + ", " + q3 + ", " + q4);
+
 	}
 }
