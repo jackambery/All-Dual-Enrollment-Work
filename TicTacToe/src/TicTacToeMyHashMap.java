@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class TicTacToeHashMap {
+public class TicTacToeMyHashMap {
 
 	private static HashMap<String, Boolean> myMap;
 
@@ -12,10 +12,67 @@ public class TicTacToeHashMap {
 	 * Constructor which instantiates the HashMap.
 	 * 
 	 */
-	TicTacToeHashMap() {
+	TicTacToeMyHashMap() {
 		myMap = new HashMap<String, Boolean>();
 	}
 
+	@Override
+	/**
+	 * Returns a new hash code value using my hash code function.
+	 * 
+	 * How the Hash Function works:
+	 * If a board is invalid, the position is set to 0. If a board is valid, the base-3 
+	 * representation of the board is converted to base-10 then that number is divided by 10. 
+	 * This cuts down the extra space in the previous, size 19,000 array. 
+	 * 
+	 * Does not work, was unsure of how to make the map use this method, 
+	 * and did not know how to use Board's method since this class does not 
+	 * utilize or extend Board like the others did.
+	 * 
+	 * @return new hash code value from my hash function
+	 */
+	public int hashCode() {
+		String s = ""; // 9 chars for each spot in given board
+		int xCount = 0; // number of x's
+		int oCount = 0; // number of o's
+		int index = 0; // spot in array
+
+		for (int r = 0; r < TicTacToe.ROWS; r++) {
+			for (int c = 0; c < TicTacToe.COLS; c++) {
+//				switch(charAt(r, c)) {
+//				case 'x':
+//					s += "1";
+//					xCount++;
+//					break;
+//				case 'o':
+//					s += "2";
+//					oCount++;
+//					break;
+//				case ' ':
+//					s += "0";
+//					break;
+//				default:
+//					s += charAt(r, c);
+//				}
+			}
+		}
+ 
+		// check if board in invalid
+		if (! (xCount > 2 || oCount > 2))
+			return 0;
+		if (! ((xCount == oCount + 1) || (oCount == xCount + 1)))
+			return 0;
+		
+		//base 3 to base 10
+		for (int i = 0; i < s.length(); i++) {
+			if (s.charAt(i) != ' ') {
+				index += ( Character.getNumericValue(s.charAt(i)) * Math.pow(3, s.length() - (i + 1)) );
+			}
+		}
+		
+		return index / 10; //index of this board in the array
+	}
+	
 	/**
 	 * Returns the size of whole map. Utilizes reflect.
 	 * 
@@ -108,7 +165,7 @@ public class TicTacToeHashMap {
 	NoSuchFieldException, 
 	IllegalAccessException {
 
-		TicTacToeHashMap m = new TicTacToeHashMap();
+		TicTacToeMyHashMap m = new TicTacToeMyHashMap();
 
 		File winnersFile = new File("TicTacToeWinners.txt");
 

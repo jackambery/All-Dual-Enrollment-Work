@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Canvas xmlns="http://www.jgrasp.org">
+  <Language>Java</Language>
+  <ShowTypes>false</ShowTypes>
+  <Version>2</Version>
+  <Grid>
+    <Snap>true</Snap>
+    <Show>false</Show>
+  </Grid>
+  <Scope id="0">
+    <Name>evaluate</Name>
+    <Signature>()I</Signature>
+    <DeclaringType>TicTacToeHashMap</DeclaringType>
+    <Depth>0</Depth>
+  </Scope>
+  <Frame>
+    <Bounds>
+      <AutoSize>true</AutoSize>
+      <X>5</X>
+      <Y>50</Y>
+      <W>237</W>
+      <H>316</H>
+    </Bounds>
+    <Viewer>
+      <ScopeID>0</ScopeID>
+      <Expression>`local java.lang.reflect.Field` tableField</Expression>
+      <ViewerClass>jgrasp_viewers._X_ElementView</ViewerClass>
+    </Viewer>
+  </Frame>
+  <Frame>
+    <Bounds>
+      <AutoSize>false</AutoSize>
+      <X>420</X>
+      <Y>120</Y>
+      <W>227</W>
+      <H>189</H>
+    </Bounds>
+    <PanelSize>
+      <Key>jgrasp_viewers._X_ElementView0</Key>
+      <Order>4</Order>
+      <W>233</W>
+      <H>218</H>
+    </PanelSize>
+    <Viewer>
+      <ScopeID>0</ScopeID>
+      <Expression>`local java.lang.Object[]` table</Expression>
+    </Viewer>
+  </Frame>
+  <Size>
+    <W>960</W>
+    <H>540</H>
+  </Size>
+  <ESize>
+    <W>960</W>
+    <H>540</H>
+  </ESize>
+</Canvas>
