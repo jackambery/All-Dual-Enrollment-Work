@@ -2,9 +2,16 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * Class to construct and manipulate a PriorityMessageQueue
+ * 
+ * @author Jack Ambery
+ *
+ */
 public class PriorityMessageQueue {
-	Queue<Message> q0, q1, q2, q3, q4;
-	ArrayList<Queue<Message>> inbox;
+	
+	private Queue<Message> q0, q1, q2, q3, q4;
+	private ArrayList<Queue<Message>> inbox;
 
 	public PriorityMessageQueue() {
 		q0 = new LinkedList<Message>();
@@ -20,7 +27,7 @@ public class PriorityMessageQueue {
 		inbox.add(q4);
 	}
 
-	public void process(Message m) {
+	public void processMessage(Message m) {
 		int priority = m.getPriority();
 		inbox.get(priority).add(m);
 	}
@@ -38,6 +45,33 @@ public class PriorityMessageQueue {
 				}
 			}
 		}	
+	}
+	
+	/**
+	 * Gets the first message in the highest priority queue that is not empty
+	 * 
+	 * @return the message in the highest non-empty priority queue
+	 */
+	public Message getMostImportant() {
+		for (int i = 0; i < inbox.size(); i++) {
+			if (!(inbox.get(i).isEmpty())) {
+				Message top = inbox.get(i).peek();
+				return top;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Removes the first message in the highest, non-empty priority queue
+	 * 
+	 */
+	public void removeMostImportant() {
+		for (int i = 0; i < inbox.size(); i++) {
+			if (!(inbox.get(i).isEmpty())) {
+				inbox.get(i).poll();
+			}
+		}
 	}
 
 }
